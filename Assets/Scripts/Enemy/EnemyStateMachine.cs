@@ -42,8 +42,6 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] 
     public List<GameObject> WeaponsLogics {get; private set;}
     [field: SerializeField] 
-    public Target Target {get; private set;}
-    [field: SerializeField] 
     public Health Health {get; private set;}
     [field: SerializeField]
     public NavMeshAgent navMeshAgent {get; private set;}

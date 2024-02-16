@@ -5,14 +5,8 @@ using UnityEngine;
 
 public class FootStepManager : MonoBehaviour
 {
-    [SerializeField] AudioClip mudLeft;
-    [SerializeField] AudioClip mudRight;
-    [SerializeField] AudioClip woodLeft;
-    [SerializeField] AudioClip woodRight;
-    [SerializeField] AudioClip snowLeft;
-    [SerializeField] AudioClip snowRight;
-    [SerializeField] AudioClip waterLeft;
-    [SerializeField] AudioClip waterRight;
+    [SerializeField] AudioClip floorLeft;
+    [SerializeField] AudioClip floorRight;
     private RaycastHit raycastHit;
     [SerializeField] AudioSource audioSource;
 
@@ -34,22 +28,7 @@ public class FootStepManager : MonoBehaviour
                 //MUD LAYER MANAGER
                 if(raycastHit.transform.gameObject.layer == 12)
                 {
-                    TryPlayFootStep(mudLeft);
-                }
-                //WOOD LAYER MANAGER
-                if(raycastHit.transform.gameObject.layer == 13)
-                {
-                    TryPlayFootStep(woodLeft);
-                }
-                //SNOW LAYER MANAGER
-                if(raycastHit.transform.gameObject.layer == 14)
-                {
-                    TryPlayFootStep(snowLeft);
-                }
-                //SEA LAYER MANAGER
-                if(raycastHit.transform.gameObject.layer == 6)
-                {
-                    TryPlayFootStep(waterLeft);
+                    TryPlayFootStep(floorLeft);
                 }
             }
         }
@@ -66,25 +45,10 @@ public class FootStepManager : MonoBehaviour
         {
             if(GetComponent<Animator>().GetFloat("speed") >= 0)
             {
-                //MUD LAYER MANAGER
+                //FLOOR LAYER MANAGER
                 if(raycastHit.transform.gameObject.layer == 12)
                 {
-                    TryPlayFootStep(mudRight);
-                }
-                //WOOD LAYER MANAGER
-                if(raycastHit.transform.gameObject.layer == 13)
-                {
-                    TryPlayFootStep(woodRight);
-                }
-                //SNOW LAYER MANAGER
-                if(raycastHit.transform.gameObject.layer == 14)
-                {
-                    TryPlayFootStep(snowRight);
-                }
-                //SEA LAYER MANAGER
-                if(raycastHit.transform.gameObject.layer == 6)
-                {
-                    TryPlayFootStep(waterRight);
+                    TryPlayFootStep(floorRight);
                 }
             }
         }

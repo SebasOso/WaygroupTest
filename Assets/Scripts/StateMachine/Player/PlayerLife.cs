@@ -43,28 +43,13 @@ public class PlayerLife : MonoBehaviour, IJsonSaveable
     }
     private void Start() 
     {
-        maxHealth = GetComponent<BaseStats>().GetStat(Stat.Health);
-        health = GetComponent<Health>().health.value;
+        maxHealth = 200;
+        health = GetComponent<Health>().health;
     }
-    private void OnEnable() 
-    {
-        GetComponent<BaseStats>().OnLevelUP += UpdateHealth;
-    }
-    private void OnDisable() 
-    {
-        GetComponent<BaseStats>().OnLevelUP -= UpdateHealth;
-    }
-    private void UpdateHealth()
-    {
-        health = GetComponent<Health>().health.value;
-        maxHealth = GetComponent<BaseStats>().GetStat(Stat.Health);
-        UpdateHealthUI();
-    }
-
     // Update is called once per frame
     void Update()
     {
-        health = GetComponent<Health>().health.value;
+        health = GetComponent<Health>().health;
         UpdateHealthUI();
         if (health <= 0 && !isDied)
         {
@@ -77,7 +62,6 @@ public class PlayerLife : MonoBehaviour, IJsonSaveable
         isDied = true; 
         isAlive = false;
         SavingWrapper wrapper = FindAnyObjectByType<SavingWrapper>();
-        wrapper.Respawn();
         isAlive = true;
         isDied = false;
     }

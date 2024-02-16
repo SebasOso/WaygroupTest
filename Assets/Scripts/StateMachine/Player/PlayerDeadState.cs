@@ -11,11 +11,6 @@ public class PlayerDeadState : PlayerBaseState
 
     public override void Enter()
     {
-        //Toggle Ragdoll
-        for (int i = 0; i < stateMachine.WeaponsLogics.Count; i++)
-        {
-            stateMachine.WeaponsLogics[i].SetActive(false);
-        }
     }
 
     public override void Tick(float deltaTime)

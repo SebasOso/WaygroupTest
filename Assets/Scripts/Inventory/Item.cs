@@ -13,16 +13,11 @@ public class Item : MonoBehaviour
     [SerializeField] InventoryItem item;
     [SerializeField] Image itemSprite;
     [SerializeField] string itemId = "PLATANOOOOOOOOOOOOOOOOOOOOO";
-    [SerializeField] Weapon weapon;
     [SerializeField] Shoulder shoulder;
     [SerializeField] int index;
     [SerializeField] Sprite defaultSprite;
     public void UseObject()
     {
-        if(weapon != null)
-        {
-            weapon.EquipWeaponFromInventory(this.item, this);
-        }
         if(shoulder != null)
         {
             shoulder.EquipShoulderFromInventory(this.item, this);
@@ -32,7 +27,6 @@ public class Item : MonoBehaviour
     {
         this.item = MenuManager.Instance.GetItemInSlot(index);
         itemId = item?.GetItemID();
-        weapon = item.GetWeapon();
         shoulder = item?.GetShoulder();
         itemSprite.sprite = item?.GetIcon();
     }
@@ -40,7 +34,6 @@ public class Item : MonoBehaviour
     {
         this.item = null;
         this.itemId = null;
-        this.weapon = null;
         this.shoulder = null;
         this.itemSprite.sprite = defaultSprite;
         MenuManager.Instance.DeleteItemFlomSlot(index);

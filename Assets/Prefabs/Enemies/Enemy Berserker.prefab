@@ -184,6 +184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7651816724640120686, guid: 8dfa7fd076cd41b409e5a9e414710da7, type: 3}
+    - {fileID: 3078650295410184677, guid: 8dfa7fd076cd41b409e5a9e414710da7, type: 3}
     m_RemovedGameObjects:
     - {fileID: 8928074185378842918, guid: 8dfa7fd076cd41b409e5a9e414710da7, type: 3}
     m_AddedGameObjects:
@@ -193,7 +194,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6958142045354269578, guid: 8dfa7fd076cd41b409e5a9e414710da7, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4290452035984980121}
+      addedObject: {fileID: 5943013855883659031}
   m_SourcePrefab: {fileID: 100100000, guid: 8dfa7fd076cd41b409e5a9e414710da7, type: 3}
 --- !u!4 &688221824982399529 stripped
 Transform:
@@ -205,7 +206,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6958142045354269578, guid: 8dfa7fd076cd41b409e5a9e414710da7, type: 3}
   m_PrefabInstance: {fileID: 71178088528013461}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4290452035984980121
+--- !u!114 &5943013855883659031
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -218,14 +219,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axeLogic: {fileID: 8327658229544211141}
-  audioClips: []
-  audioSource: {fileID: 0}
-  runeClip: {fileID: 0}
-  profileDown: {fileID: 0}
-  profileUp: {fileID: 0}
-  profileCut: {fileID: 0}
-  profileRune: {fileID: 0}
-  cinemachineImpulseSource: {fileID: 0}
 --- !u!136 &7117956453742314536 stripped
 CapsuleCollider:
   m_CorrespondingSourceObject: {fileID: 7076544481792781501, guid: 8dfa7fd076cd41b409e5a9e414710da7, type: 3}

@@ -37,7 +37,7 @@ public class EnemyLife : MonoBehaviour
     }
     void Update()
     {
-        health = GetComponent<Health>().health.value;
+        health = GetComponent<Health>().health;
         maxHealth = GetComponent<BaseStats>().GetStat(Stat.Health);
         HealthBarColor();
         UpdateHealthUI();

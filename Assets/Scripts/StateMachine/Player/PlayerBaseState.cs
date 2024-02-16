@@ -19,26 +19,8 @@ public abstract class PlayerBaseState : State
     {
         stateMachine.CharacterController.Move((motion + stateMachine.ForceReceiver.Movement) * deltaTime);
     }
-    protected void FaceTarget()
-    {
-        if(stateMachine.Targeter.currentTarget == null){return;}
-        Vector3 targetDirection = (stateMachine.Targeter.currentTarget.transform.position - stateMachine.transform.position);
-        targetDirection.y = 0;
-
-        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-
-        float rotationSpeed = 8.4f; 
-        stateMachine.transform.rotation = Quaternion.Slerp(stateMachine.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-    }
     protected void ReturnToLocomotion()
     {
-        if(stateMachine.Targeter.currentTarget != null)
-        {
-            stateMachine.SwitchState(new PlayerTargetingState(stateMachine));
-        }
-        else
-        {
-            stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
-        }
+        stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
     }
 }

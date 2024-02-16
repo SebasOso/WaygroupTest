@@ -8,8 +8,6 @@ public class AxeDamage : MonoBehaviour
 {
     private List<Collider> alreadyColliderWith = new List<Collider>();
     [SerializeField] private Collider myCollider;
-    private Armory armory;
-    public bool runeDamage = false;
     public float damage;
     [SerializeField] private CinemachineImpulseSource cinemachineImpulseSource;
     [SerializeField] private ScreenShakeProfile profile;
@@ -22,7 +20,6 @@ public class AxeDamage : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other) 
     {
-        armory = myCollider.GetComponent<Armory>();
         if(other == myCollider){return;}
         if(alreadyColliderWith.Contains(other))
         {   
@@ -31,32 +28,14 @@ public class AxeDamage : MonoBehaviour
         alreadyColliderWith.Add(other);
         if(other.TryGetComponent<Health>(out Health health))
         {
-            if(runeDamage)
-            {
-                PlayRuneSound();
-                CameraShakeManager.Instance.ScreenShakeFromProfile(cinemachineImpulseSource, profile);
-                damage = armory.damage + 10f;
-                health.DealDamage(damage);
-                HealManager.Instance.AddHitHeal();
-            }
-            else
-            {
-                PlayRandomSound();
-                CameraShakeManager.Instance.ScreenShakeFromProfile(cinemachineImpulseSource, profile);
-                damage = armory.damage;
-                health.DealDamage(damage);
-                HealManager.Instance.AddHitHeal();
-            }
+            PlayRandomSound();
+            damage = 20;
+            health.DealDamage(damage);
             if(health.tag == "Player")
             {
                 PlayRandomSound();
                 PlayerLife.Instance.lerpTimer = 0f;
             }
-        }
-        if(other.TryGetComponent<ForceReceiver>(out ForceReceiver force))
-        {
-            Vector3 direction = (other.transform.position - myCollider.transform.position).normalized;
-            force.AddForce(direction * armory.currentWeapon.value.GetWeaponKnokcback());
         }
     }
     private void PlayRandomSound()
@@ -67,10 +46,5 @@ public class AxeDamage : MonoBehaviour
             audioSource.clip = audioClips[randomIndex];
             audioSource.Play();
         }
-    }
-    private void PlayRuneSound()
-    {
-        audioSource.clip = audioClipRune;
-        audioSource.Play();
     }
 }

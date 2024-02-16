@@ -3216,7 +3216,6 @@ GameObject:
   - component: {fileID: 3704218406696081690}
   - component: {fileID: 8080853124129522843}
   - component: {fileID: 4588404041592787998}
-  - component: {fileID: 3078650295410184677}
   - component: {fileID: 586232541755160666}
   - component: {fileID: 5076070900488381897}
   - component: {fileID: 7651816724640120686}
@@ -3308,18 +3307,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3078650295410184677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6958142045354269578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d3687765aec003488c85fec23ebae18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &586232541755160666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3332,8 +3319,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6523a71dab04e6e469815517c44dfba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regenerationHealth: 80
-  healRate: 6.5
+  armor: 0
+  health: 200
   isFullHealth: 0
   hit: {fileID: 4956647572125521462}
   healingEffect: {fileID: 0}
@@ -3367,7 +3354,6 @@ MonoBehaviour:
   <ragdoll>k__BackingField: {fileID: 1464276605885785147}
   <WeaponsLogics>k__BackingField:
   - {fileID: 8928074185378842918}
-  <Target>k__BackingField: {fileID: 3078650295410184677}
   <Health>k__BackingField: {fileID: 586232541755160666}
   <navMeshAgent>k__BackingField: {fileID: 8080853124129522843}
   <RunningMovementSpeed>k__BackingField: 3
@@ -3651,14 +3637,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c73bef375a211c478d273e1657b2871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mudLeft: {fileID: 8300000, guid: fd5df878d144b434b8188263d43746a9, type: 3}
-  mudRight: {fileID: 8300000, guid: eff58f0927b0a05418f4b5f3ae51e1d0, type: 3}
-  woodLeft: {fileID: 8300000, guid: d9aff7bc22395884f8d9b6f870967615, type: 3}
-  woodRight: {fileID: 8300000, guid: a349ed1050e316b4ba20ac1ec597268a, type: 3}
-  snowLeft: {fileID: 8300000, guid: f23518564677c2545af282033aa85cc5, type: 3}
-  snowRight: {fileID: 8300000, guid: 26f358534c25b9c4884eef5a28c7cb89, type: 3}
-  waterLeft: {fileID: 8300000, guid: ee2e2b0b4c0a94243829272f837f409e, type: 3}
-  waterRight: {fileID: 8300000, guid: 71a3df70429ec30429c1d0810d78dc12, type: 3}
+  floorLeft: {fileID: 0}
+  floorRight: {fileID: 0}
   audioSource: {fileID: 1987031919197537999}
   stepCooldown: 0.5
 --- !u!114 &6931636583877011790

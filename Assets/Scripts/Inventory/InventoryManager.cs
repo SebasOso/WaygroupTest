@@ -13,10 +13,6 @@ public class InventoryManager : MonoBehaviour
 {
     [SerializeField] private Item[] itemsInInventory;
 
-    [Header("Weapons")]
-    public InventoryItem weaponEquipped;
-    public InventoryItem weaponInBack;
-
     [Header("Armor")]
     public InventoryItem shoulderEquipped;
 
@@ -35,26 +31,13 @@ public class InventoryManager : MonoBehaviour
     private void Start() 
     {
         Redraw();
-        if(weaponEquipped == null)
-        {
-            weaponEquipped = Armory.Instance.currentWeapon.value.GetInventoryItem();
-        }
     }
     private void OnEnable() 
     {
         Redraw();
-        weaponEquipped = Armory.Instance.currentWeapon.value.GetInventoryItem();
         if(ShoulderArmorManager.Instance.shoulder != null)
         {
             shoulderEquipped = ShoulderArmorManager.Instance.shoulder.GetInventoryItem();
-        }
-        if(Armory.Instance.disarmedWeapon != null)
-        {
-            weaponInBack = Armory.Instance.disarmedWeapon.GetInventoryItem();
-        }
-        else
-        {
-            weaponInBack = null;
         }
     }
     private void Redraw()
@@ -67,22 +50,6 @@ public class InventoryManager : MonoBehaviour
             }
             itemsInInventory[i].SetItem(i);
         }
-    }
-    private IEnumerator SetNewWeapon(InventoryItem weaponToEquip, Item itemToDeleteFromInventory)
-    {
-        yield return new WaitForSeconds(0.1f);
-        if(weaponEquipped != null)
-        {
-            MenuManager.Instance.AddToFirstEmptySlot(weaponEquipped);
-        }
-        else if(weaponInBack != null)
-        {
-            MenuManager.Instance.AddToFirstEmptySlot(weaponInBack);
-        }
-        itemToDeleteFromInventory.DeleteItemFromInventory();
-        PlayEquipSound();
-        weaponEquipped = weaponToEquip;
-        Redraw();
     }
     private IEnumerator SetNewShoulder(InventoryItem shoulderToEquip, Item itemToDeleteFromInventory)
     {
@@ -103,10 +70,6 @@ public class InventoryManager : MonoBehaviour
     }
 
     //Setters
-    public void SetNewInventoryWeapon(InventoryItem weaponToEquip, Item itemToDeleteFromInventory)
-    {
-        StartCoroutine(SetNewWeapon(weaponToEquip, itemToDeleteFromInventory));
-    }
     public void SetNewInventoryShoulder(InventoryItem shoulderToEquip, Item itemToDeleteFromInventory)
     {
         StartCoroutine(SetNewShoulder(shoulderToEquip, itemToDeleteFromInventory));

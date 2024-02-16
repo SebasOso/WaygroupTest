@@ -12,7 +12,7 @@ public class ForceReceiver : MonoBehaviour
     private Vector3 impact;
 
     private float verticalVelocity;
-    [SerializeField] private bool isGrounded;
+    [SerializeField] public bool isGrounded;
     [SerializeField] LayerMask groundLayerMask;
     [SerializeField] LayerMask obstaclesLayerMask;
     [SerializeField] float groundCheckSphereRad = 0.37f;
@@ -21,7 +21,7 @@ public class ForceReceiver : MonoBehaviour
     void Update()
     {
         HandleGroundCheck();
-        GetComponent<Animator>().SetBool("isGrounded", isGrounded);
+        GetComponent<Animator>().SetBool("IsGrounded", isGrounded);
         if(verticalVelocity < 0f && controller.isGrounded)
         {
             verticalVelocity = Physics.gravity.y * Time.deltaTime;

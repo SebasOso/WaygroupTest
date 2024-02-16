@@ -6,6 +6,7 @@ using RPG.Saving;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Waygroup;
 
 public class MenuManager : MonoBehaviour, IJsonSaveable
 {
@@ -54,8 +55,7 @@ public class MenuManager : MonoBehaviour, IJsonSaveable
     }
     private void Update() 
     {
-        if(playerStateMachine.isInteracting) { return; }
-        if(InputReader.Instance.InventoryOpenCloseInput)
+        if(InputManager.Instance.InventoryOpenCloseInput)
         {
             if(!isPaused)
             {
@@ -74,14 +74,16 @@ public class MenuManager : MonoBehaviour, IJsonSaveable
     }
     private void Pause()
     {
+        InputManager.Instance.CanRun = false;
+        InputManager.Instance.IsRunning = false;
+        GetComponent<PlayerController>().Stop();
         isPaused = true;
-        GetComponent<Animator>().SetBool("isRun", false);
-        GetComponent<Animator>().SetBool("isIdle", true);
         playerStateMachine.enabled = false;
         OpenInventory();
     }
     private void Unpause()
     {
+        GetComponent<PlayerController>().Stop();
         isPaused = false;
         Time.timeScale = 1f;
         playerStateMachine.enabled = true;

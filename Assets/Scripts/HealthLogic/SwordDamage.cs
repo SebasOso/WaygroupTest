@@ -23,7 +23,6 @@ public class SwordDamage : MonoBehaviour
         if(other.TryGetComponent<Health>(out Health health))
         {
             health.DealDamage(sword.GetWeaponDamage());
-            HealManager.Instance.AddHitHeal();
             if (health.tag == "Player")
             {
                 PlayerLife.Instance.lerpTimer = 0f;

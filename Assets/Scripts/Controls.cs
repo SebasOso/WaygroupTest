@@ -46,94 +46,13 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Dodge"",
-                    ""type"": ""Button"",
-                    ""id"": ""c3a5f1db-8127-4ddb-9364-c66c8f1a9b85"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""LookAround"",
+                    ""name"": ""Look"",
                     ""type"": ""Value"",
                     ""id"": ""caab99ff-5dfd-494c-9338-5c4eba4b7a84"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Target"",
-                    ""type"": ""Button"",
-                    ""id"": ""ca5ffbc7-2c19-40f7-962e-a7342ba0a424"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""CancelTarget"",
-                    ""type"": ""Button"",
-                    ""id"": ""76a5821e-cd79-4fd1-b077-06244240ef57"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Attack"",
-                    ""type"": ""Button"",
-                    ""id"": ""12f667cf-e452-4b1b-b36b-c86c093e7f96"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Run"",
-                    ""type"": ""Button"",
-                    ""id"": ""0bb3b8f8-e814-404f-b397-e11cd45d63d1"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Interact"",
-                    ""type"": ""Button"",
-                    ""id"": ""989dfb5b-575e-4a79-9d19-86c00202731a"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""RuneAttack"",
-                    ""type"": ""Button"",
-                    ""id"": ""89f7060e-2d72-4690-923a-2532f7d116c2"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Equip"",
-                    ""type"": ""Button"",
-                    ""id"": ""bb4f6b93-9998-4596-af85-f217da38a031"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Disarm"",
-                    ""type"": ""Button"",
-                    ""id"": ""850224c0-3611-463b-a6e4-66259033542d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""InventoryOpenClose"",
@@ -145,9 +64,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Heal"",
+                    ""name"": ""Run"",
                     ""type"": ""Button"",
-                    ""id"": ""e994608e-585e-4150-9af0-e48354cde7d4"",
+                    ""id"": ""0f1c5602-ba87-42fb-90fb-add3dc57dc3b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -289,34 +208,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c30b006f-14a8-4a97-b25c-f116e430bbf7"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""Dodge"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a04a78b8-6867-435e-9d19-0054d5a71fe7"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""Dodge"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""e201f990-c7cd-4baa-99c9-d49688f11ec0"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""LookAround"",
+                    ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -327,183 +224,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamePad"",
-                    ""action"": ""LookAround"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9296d0fc-55c3-4cba-883d-c9057960aa7a"",
-                    ""path"": ""<Gamepad>/rightStickPress"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""Target"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""851a72ad-ce1e-4d6b-8e5f-7fbda8729864"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""Target"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8aa7e35f-4584-4588-9c91-d885b06c7a2e"",
-                    ""path"": ""<Gamepad>/rightStickPress"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""CancelTarget"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5d33db8c-b79b-46db-ae3f-b0f46d4196fe"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""CancelTarget"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c95158eb-7c47-465f-a663-9270542cd6b6"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""be5b714c-e375-460a-9e72-a804cdb7808f"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d30c2218-ff68-4f0b-9dc0-4253566bda2d"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""Run"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8d9f215a-603c-4ef1-be5d-a478bbedc38b"",
-                    ""path"": ""<Keyboard>/shift"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""Run"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9a49add7-aa6b-497a-8a0a-b181b171a2c0"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f400f9f0-eaf6-4229-bdf2-41c84f74b883"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8d78be8c-31a2-4cf1-b49f-31c978633abe"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""RuneAttack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""74dcfe06-78d7-4519-8ddd-faacf21da014"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""RuneAttack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b1cd8c78-ade6-4366-a75f-9fe3fe17bdad"",
-                    ""path"": ""<Gamepad>/dpad/right"",
-                    ""interactions"": ""Tap"",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""Equip"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""afb2ab3d-afd0-470c-990e-e9232d775e3b"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""Equip"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""25fb6a61-5494-4604-8dd2-9461255f650e"",
-                    ""path"": ""<Gamepad>/dpad/left"",
-                    ""interactions"": ""Tap"",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""Disarm"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""96d6e8ea-5120-4e42-bb7b-31efc12c7cc2"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""Disarm"",
+                    ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -531,23 +252,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""3262c4aa-28e5-43c3-a8a8-1aa0d26d8acb"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""Heal"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c6720dff-ee56-4531-8dd9-070a3e32db52"",
-                    ""path"": ""<Keyboard>/h"",
+                    ""id"": ""7762aa2f-f522-4560-823c-6049ce50e7bc"",
+                    ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""Heal"",
+                    ""action"": ""Run"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -599,18 +309,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
-        m_Player_LookAround = m_Player.FindAction("LookAround", throwIfNotFound: true);
-        m_Player_Target = m_Player.FindAction("Target", throwIfNotFound: true);
-        m_Player_CancelTarget = m_Player.FindAction("CancelTarget", throwIfNotFound: true);
-        m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
-        m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
-        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
-        m_Player_RuneAttack = m_Player.FindAction("RuneAttack", throwIfNotFound: true);
-        m_Player_Equip = m_Player.FindAction("Equip", throwIfNotFound: true);
-        m_Player_Disarm = m_Player.FindAction("Disarm", throwIfNotFound: true);
+        m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_InventoryOpenClose = m_Player.FindAction("InventoryOpenClose", throwIfNotFound: true);
-        m_Player_Heal = m_Player.FindAction("Heal", throwIfNotFound: true);
+        m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -674,36 +375,18 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_Dodge;
-    private readonly InputAction m_Player_LookAround;
-    private readonly InputAction m_Player_Target;
-    private readonly InputAction m_Player_CancelTarget;
-    private readonly InputAction m_Player_Attack;
-    private readonly InputAction m_Player_Run;
-    private readonly InputAction m_Player_Interact;
-    private readonly InputAction m_Player_RuneAttack;
-    private readonly InputAction m_Player_Equip;
-    private readonly InputAction m_Player_Disarm;
+    private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_InventoryOpenClose;
-    private readonly InputAction m_Player_Heal;
+    private readonly InputAction m_Player_Run;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
         public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
-        public InputAction @LookAround => m_Wrapper.m_Player_LookAround;
-        public InputAction @Target => m_Wrapper.m_Player_Target;
-        public InputAction @CancelTarget => m_Wrapper.m_Player_CancelTarget;
-        public InputAction @Attack => m_Wrapper.m_Player_Attack;
-        public InputAction @Run => m_Wrapper.m_Player_Run;
-        public InputAction @Interact => m_Wrapper.m_Player_Interact;
-        public InputAction @RuneAttack => m_Wrapper.m_Player_RuneAttack;
-        public InputAction @Equip => m_Wrapper.m_Player_Equip;
-        public InputAction @Disarm => m_Wrapper.m_Player_Disarm;
+        public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @InventoryOpenClose => m_Wrapper.m_Player_InventoryOpenClose;
-        public InputAction @Heal => m_Wrapper.m_Player_Heal;
+        public InputAction @Run => m_Wrapper.m_Player_Run;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -719,42 +402,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @Dodge.started += instance.OnDodge;
-            @Dodge.performed += instance.OnDodge;
-            @Dodge.canceled += instance.OnDodge;
-            @LookAround.started += instance.OnLookAround;
-            @LookAround.performed += instance.OnLookAround;
-            @LookAround.canceled += instance.OnLookAround;
-            @Target.started += instance.OnTarget;
-            @Target.performed += instance.OnTarget;
-            @Target.canceled += instance.OnTarget;
-            @CancelTarget.started += instance.OnCancelTarget;
-            @CancelTarget.performed += instance.OnCancelTarget;
-            @CancelTarget.canceled += instance.OnCancelTarget;
-            @Attack.started += instance.OnAttack;
-            @Attack.performed += instance.OnAttack;
-            @Attack.canceled += instance.OnAttack;
-            @Run.started += instance.OnRun;
-            @Run.performed += instance.OnRun;
-            @Run.canceled += instance.OnRun;
-            @Interact.started += instance.OnInteract;
-            @Interact.performed += instance.OnInteract;
-            @Interact.canceled += instance.OnInteract;
-            @RuneAttack.started += instance.OnRuneAttack;
-            @RuneAttack.performed += instance.OnRuneAttack;
-            @RuneAttack.canceled += instance.OnRuneAttack;
-            @Equip.started += instance.OnEquip;
-            @Equip.performed += instance.OnEquip;
-            @Equip.canceled += instance.OnEquip;
-            @Disarm.started += instance.OnDisarm;
-            @Disarm.performed += instance.OnDisarm;
-            @Disarm.canceled += instance.OnDisarm;
+            @Look.started += instance.OnLook;
+            @Look.performed += instance.OnLook;
+            @Look.canceled += instance.OnLook;
             @InventoryOpenClose.started += instance.OnInventoryOpenClose;
             @InventoryOpenClose.performed += instance.OnInventoryOpenClose;
             @InventoryOpenClose.canceled += instance.OnInventoryOpenClose;
-            @Heal.started += instance.OnHeal;
-            @Heal.performed += instance.OnHeal;
-            @Heal.canceled += instance.OnHeal;
+            @Run.started += instance.OnRun;
+            @Run.performed += instance.OnRun;
+            @Run.canceled += instance.OnRun;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -765,42 +421,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @Dodge.started -= instance.OnDodge;
-            @Dodge.performed -= instance.OnDodge;
-            @Dodge.canceled -= instance.OnDodge;
-            @LookAround.started -= instance.OnLookAround;
-            @LookAround.performed -= instance.OnLookAround;
-            @LookAround.canceled -= instance.OnLookAround;
-            @Target.started -= instance.OnTarget;
-            @Target.performed -= instance.OnTarget;
-            @Target.canceled -= instance.OnTarget;
-            @CancelTarget.started -= instance.OnCancelTarget;
-            @CancelTarget.performed -= instance.OnCancelTarget;
-            @CancelTarget.canceled -= instance.OnCancelTarget;
-            @Attack.started -= instance.OnAttack;
-            @Attack.performed -= instance.OnAttack;
-            @Attack.canceled -= instance.OnAttack;
-            @Run.started -= instance.OnRun;
-            @Run.performed -= instance.OnRun;
-            @Run.canceled -= instance.OnRun;
-            @Interact.started -= instance.OnInteract;
-            @Interact.performed -= instance.OnInteract;
-            @Interact.canceled -= instance.OnInteract;
-            @RuneAttack.started -= instance.OnRuneAttack;
-            @RuneAttack.performed -= instance.OnRuneAttack;
-            @RuneAttack.canceled -= instance.OnRuneAttack;
-            @Equip.started -= instance.OnEquip;
-            @Equip.performed -= instance.OnEquip;
-            @Equip.canceled -= instance.OnEquip;
-            @Disarm.started -= instance.OnDisarm;
-            @Disarm.performed -= instance.OnDisarm;
-            @Disarm.canceled -= instance.OnDisarm;
+            @Look.started -= instance.OnLook;
+            @Look.performed -= instance.OnLook;
+            @Look.canceled -= instance.OnLook;
             @InventoryOpenClose.started -= instance.OnInventoryOpenClose;
             @InventoryOpenClose.performed -= instance.OnInventoryOpenClose;
             @InventoryOpenClose.canceled -= instance.OnInventoryOpenClose;
-            @Heal.started -= instance.OnHeal;
-            @Heal.performed -= instance.OnHeal;
-            @Heal.canceled -= instance.OnHeal;
+            @Run.started -= instance.OnRun;
+            @Run.performed -= instance.OnRun;
+            @Run.canceled -= instance.OnRun;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -849,17 +478,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnDodge(InputAction.CallbackContext context);
-        void OnLookAround(InputAction.CallbackContext context);
-        void OnTarget(InputAction.CallbackContext context);
-        void OnCancelTarget(InputAction.CallbackContext context);
-        void OnAttack(InputAction.CallbackContext context);
-        void OnRun(InputAction.CallbackContext context);
-        void OnInteract(InputAction.CallbackContext context);
-        void OnRuneAttack(InputAction.CallbackContext context);
-        void OnEquip(InputAction.CallbackContext context);
-        void OnDisarm(InputAction.CallbackContext context);
+        void OnLook(InputAction.CallbackContext context);
         void OnInventoryOpenClose(InputAction.CallbackContext context);
-        void OnHeal(InputAction.CallbackContext context);
+        void OnRun(InputAction.CallbackContext context);
     }
 }

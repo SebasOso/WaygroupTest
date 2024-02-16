@@ -119,11 +119,5 @@ namespace RPG.Combat
         {
             return weaponItem;
         }
-        public void EquipWeaponFromInventory(InventoryItem inventoryItem, Item item)
-        {
-            Armory.Instance.EquipWeapon(this);
-            Armory.Instance.DesactivateBackWeapon();
-            InventoryManager.Instance.SetNewInventoryWeapon(inventoryItem, item);
-        }
     }
 }
