@@ -1,0 +1,35 @@
+OpenShop:
+"No tienes ropa???, Aca puedo darte, y no solo ropa...(risa incomoda) jmm jmm, bueno, tambien puedo hacerte un nuevo corte de pelo. Siempre y cuando tengas el dinero adecuado."
+
+CloseShop:
+"Que tengas una excelente aventura."
+"Que sufran los invasores!"
+"Matalos a todos."
+"Que la sangre pinte la nieve de rojo."
+"Que Odin te acompañe."
+
+IDEAS PARA POLYOFWAR =
+++ COMPRAR FLECHAS.
+++ VENDER ARMAS O ARMADURAS.
+++ DEPENDIENDO DE UN ARMA, HAY UNA PASIVA DISTINTA "MAS DAÑO PERO MENOS VELOCIDAD DE ATAQUE, MAS VELOCIDAD DE ATAQUE PERO MENOS ARMADURA ETC...".
+	- NECITAS 6 GOLPES PARA CURARTE.
+	- CADA QUE GOLPEES SE AGREGA 1 A CANTIDADDEGOLPES.
+	- SI CANTIDADDEGOLPES ES IGUAL A 6 ENTONCES CANHEAL = TRUE.
+	- CUANDO TE CURES, CANTIDADDEGOLPES = 0, CANHEAL = FALSE.
+	- ELIMINAR EL CONDICIONAL DE FULL VIDA.
+		- COLLIDERS DE LAS ARMAS, CADA QUE LLAMO A DEALDAMAGE, LLAMO A UN EVENTO QUE ME AGREGUE 1 A CANTIDADDEGOLPES.
+++ GOLPEAR ENEMIGOS PARA LLENAR LA BARRA DE HEAL.
+
+BUGS O ERRORES =
+++ EQUIPAR Y DESEQUIPAR INFINITAMENTE, NO DEJA TERMINAR LA ANIMACION.
+++ COOLDOWNS ESTAN RAROS, (HEAL SE PUEDE ARREGLAR IMPLEMENTANDO LA IDEA DE LOS GOLPES).
+
+
+-0.545,1.334,-0.64
+
+cd E:\Folders\Games\Riot Games\League of Legends\
+E:
+LeagueClient.exe --locale=ja_JP
+
+
+Tinder: 3148697223

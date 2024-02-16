@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dc047c233344664c9996be4c36379e2, type: 3}
+  m_Name: BowItem01
+  m_EditorClassIdentifier: 
+  itemID: 86143702-7cf0-4371-8be1-f34e3210e728
+  icon: {fileID: 21300000, guid: 80b7a836387c44b439f6629b9090497a, type: 3}
+  weapon: {fileID: 11400000, guid: 5adc0fecc3dd7af428bde73e7cb876ed, type: 2}

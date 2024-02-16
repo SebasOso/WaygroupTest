@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cc2233155189a44292bb0a5394dcfc4, type: 3}
+  m_Name: EnemySwordAndShield
+  m_EditorClassIdentifier: 
+  weaponRange: 1.91
+  weaponDamage: 15
+  percentageDamage: 25
+  weaponKnockback: 0
+  weaponPrefab: {fileID: 6027540345009413175, guid: 48accfefbc80cbc43be2bc5410c54304, type: 3}
+  weaponOverrideController: {fileID: 22100000, guid: 17a931df82112df4eb4daebc51c3e510, type: 2}
+  isRightHanded: 1
+  projectile: {fileID: 0}
+  CanRuneAttack: 0
