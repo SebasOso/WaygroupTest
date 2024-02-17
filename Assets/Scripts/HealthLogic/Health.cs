@@ -19,7 +19,7 @@ public class Health : MonoBehaviour
     private bool isDead = false;
     private bool isInvulnerable;
     [Header("Bool For Debug")]
-    public bool isFullHealth;
+    public bool isFullHealth = true;
 
     [Header("Visual Effects")]
     //Effects
@@ -34,6 +34,17 @@ public class Health : MonoBehaviour
     private void Start()
     {
         health = 200;
+    }
+    private void Update()
+    {
+        if(health < 200)
+        {
+            isFullHealth = false;
+        }
+        else if (health >= 200)
+        {
+            isFullHealth = true;
+        }
     }
     public void DealDamage(float damage)
     {

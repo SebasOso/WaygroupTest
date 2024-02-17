@@ -16,3 +16,6 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 10a3b6dc53d98304e80a8d2681b35c98, type: 3}
   weapon: {fileID: 0}
   shoulder: {fileID: 11400000, guid: 8ef7ee88d1e9de04a95b1344f883cf95, type: 2}
+  healthPotion: {fileID: 0}
+  isStackeable: 0
+  quantity: 1

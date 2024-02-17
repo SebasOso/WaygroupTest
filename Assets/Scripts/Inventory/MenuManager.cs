@@ -27,6 +27,9 @@ public class MenuManager : MonoBehaviour
     [Header("For Debug")]
     public bool isPaused;
 
+    [Header("Items To Reset")]
+    [SerializeField] InventoryItem[] inventoryItemsToReset;
+
     public event Action inventoryUpdated;
     // Start is called before the first frame update
     private void Awake() 
@@ -161,26 +164,41 @@ public class MenuManager : MonoBehaviour
     }
     public bool AddToFirstEmptySlot(InventoryItem item)
     {
-        int i = FindSlot(item);
-
-        if (i < 0)
+        if(HasItem(item))
         {
+            item.AddQuantity();
             return false;
         }
+        else
+        {
+            int i = FindSlot(item);
 
-        slots[i] = item;
-
-        PlayEquip();
-
-        return true;
+            if (i < 0)
+            {
+                return false;
+            }
+            slots[i] = item;
+            if (slots[i].GetQuantity() <= 0)
+            {
+                slots[i].Reset();
+            }
+            return true;
+        }
     }
     public void DeleteItemFlomSlot(int index)
     {
         slots[index] = null;
     }
-    private void PlayEquip()
+    public void PlayEquip()
     {
         audioSource.clip = equipClip;
         audioSource.Play();
+    }
+    private void OnApplicationQuit()
+    {
+        for (int i = 0; i < inventoryItemsToReset.Length; i++)
+        {
+            inventoryItemsToReset[i].Reset();
+        }
     }
 }

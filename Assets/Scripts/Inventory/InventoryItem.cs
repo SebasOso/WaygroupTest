@@ -17,6 +17,8 @@ namespace RPG.Inventories
         [SerializeField] Weapon weapon = null;
         [SerializeField] Shoulder shoulder = null;
         [SerializeField] HealthPotion healthPotion = null;
+        [SerializeField] private bool isStackeable = false;
+        [SerializeField] private int quantity = 1;
         // STATE
         static Dictionary<string, InventoryItem> itemLookupCache;
 
@@ -73,8 +75,28 @@ namespace RPG.Inventories
         {
             return healthPotion;
         }
+        public bool GetStackeable()
+        {
+            return isStackeable;
+        }
+        public int GetQuantity()
+        {
+            return quantity;
+        }
+        public void AddQuantity()
+        {
+            quantity = quantity + 1;
+        }
+        public void RestQuantity()
+        {
+            quantity = quantity - 1;
+        }
+        public void Reset()
+        {
+            quantity = 1;
+        }
         // PRIVATE
-        
+
         void ISerializationCallbackReceiver.OnBeforeSerialize()
         {
             // Generate and save a new UUID if this is blank.

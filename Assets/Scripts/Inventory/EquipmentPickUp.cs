@@ -18,6 +18,7 @@ public class EquipmentPickUp : Interactable
         if (!canPick) { return; }
         if (itemToPick != null)
         {
+            MenuManager.Instance.PlayEquip();
             bool foundSlot = MenuManager.Instance.AddToFirstEmptySlot(itemToPick);
             if (foundSlot)
             {
@@ -26,25 +27,6 @@ public class EquipmentPickUp : Interactable
             }
         }
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            canPick = true;
-            pickupUI.SetActive(true);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            canPick = false;
-            pickupUI.SetActive(false);
-        }
-    }
-
     public override void OnInteract()
     {
         Pickup();

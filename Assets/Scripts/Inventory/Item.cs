@@ -2,6 +2,7 @@
 using RPG.Inventories;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class Item : MonoBehaviour
 {
@@ -12,6 +13,15 @@ public class Item : MonoBehaviour
     [SerializeField] HealthPotion healthPotion;
     [SerializeField] int index;
     [SerializeField] Sprite defaultSprite;
+    [SerializeField] TextMeshProUGUI quantityText;
+    [SerializeField] int quantity = 1;
+    [SerializeField] bool isStackeable = false;
+
+    private Health player;
+    private void OnEnable()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
+    }
     public void UseObject()
     {
         if (shoulder != null)
@@ -20,7 +30,15 @@ public class Item : MonoBehaviour
         }
         else if (healthPotion != null)
         {
+            if (player.isFullHealth) { return; }
             healthPotion.Heal();
+            this.item.RestQuantity();
+            quantity--;
+            quantityText.text = quantity.ToString();
+            if (quantity < 1)
+            {
+                DeleteItemFromInventory();
+            }
         }
     }
     public void SetItemToUse()
@@ -35,6 +53,13 @@ public class Item : MonoBehaviour
     public void SetItem(int index)
     {
         this.item = MenuManager.Instance.GetItemInSlot(index);
+        if(item != null)
+        {
+            quantity = item.GetQuantity();
+            quantityText.enabled = item.GetStackeable();
+            isStackeable = true;
+            quantityText.text = quantity.ToString();
+        }
         itemId = item?.GetItemID();
         shoulder = item?.GetShoulder();
         itemSprite.sprite = item?.GetIcon();
@@ -46,7 +71,21 @@ public class Item : MonoBehaviour
         this.itemId = null;
         this.shoulder = null;
         this.healthPotion = null;
+        quantityText.enabled = false;
+        isStackeable = false;
+        quantity = 0;
         this.itemSprite.sprite = defaultSprite;
         MenuManager.Instance.DeleteItemFlomSlot(index);
+    }
+    public void AddQuantity()
+    {
+        if (!isStackeable) { return; }
+        quantity++;
+    }
+    public bool HasQuantity()
+    {
+        if (!isStackeable) { return false; }
+        if(quantity > 0) { return true; }
+        return false;
     }
 }

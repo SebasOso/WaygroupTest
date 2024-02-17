@@ -3,67 +3,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthPotionPickUp : MonoBehaviour
+public class HealthPotionPickUp : Interactable
 {
     [SerializeField] InventoryItem itemToPick = null;
-    [SerializeField] float respawn = 5f;
     [SerializeField] GameObject pickupUI;
-    [SerializeField] private bool isNear;
+    private bool canPick = false;
+
     private void Start()
     {
         pickupUI.SetActive(false);
     }
-
-    private void Update()
-    {
-        if (itemToPick != null && Input.GetKeyDown(KeyCode.E) && isNear)
-        {
-            Pickup();
-        }
-    }
-
     private void Pickup()
     {
-        bool foundSlot = MenuManager.Instance.AddToFirstEmptySlot(itemToPick);
-        if (foundSlot)
+        if (!canPick) { return; }
+        if (itemToPick != null)
         {
-            pickupUI.SetActive(false);
-            StartCoroutine(HideForSeconds(respawn));
-            gameObject.SetActive(false);
+            MenuManager.Instance.PlayEquip();
+            bool foundSlot = MenuManager.Instance.AddToFirstEmptySlot(itemToPick);
+            if (foundSlot)
+            {
+                pickupUI.SetActive(false);
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                pickupUI.SetActive(false);
+                gameObject.SetActive(false);
+            }
         }
     }
-
-    private void OnTriggerEnter(Collider other)
+    public override void OnInteract()
     {
-        if (other.gameObject.tag == "Player")
-        {
-            isNear = true;
-            pickupUI.SetActive(true);
-        }
+        Pickup();
     }
 
-    private void OnTriggerExit(Collider other)
+    public override void OnFocus()
     {
-        if (other.gameObject.tag == "Player")
-        {
-            isNear = false;
-            pickupUI.SetActive(false);
-        }
+        pickupUI.SetActive(true);
+        canPick = true;
+        GetComponent<Outline>().enabled = true;
     }
 
-    private IEnumerator HideForSeconds(float seconds)
+    public override void OnLoseFocus()
     {
-        ToggleShowPickup(false);
-        yield return new WaitForSeconds(seconds);
-        ToggleShowPickup(true);
-    }
-
-    private void ToggleShowPickup(bool toggle)
-    {
-        GetComponent<Collider>().enabled = toggle;
-        foreach (Transform child in transform)
-        {
-            child.gameObject.SetActive(toggle);
-        }
+        pickupUI.SetActive(false);
+        canPick = false;
+        GetComponent<Outline>().enabled = false;
     }
 }

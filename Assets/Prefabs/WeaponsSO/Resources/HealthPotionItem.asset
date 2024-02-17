@@ -17,3 +17,5 @@ MonoBehaviour:
   weapon: {fileID: 0}
   shoulder: {fileID: 0}
   healthPotion: {fileID: 11400000, guid: 6135981d2456d484ebf55279956886ff, type: 2}
+  isStackeable: 1
+  quantity: 1
