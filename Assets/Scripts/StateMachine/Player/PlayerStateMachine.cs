@@ -1,13 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using Newtonsoft.Json.Linq;
-using RPG.Combat;
-using RPG.Saving;
+
 using UnityEngine;
-using UnityEngine.InputSystem;
-using Waygroup;
 
 public class PlayerStateMachine : StateMachine
 {

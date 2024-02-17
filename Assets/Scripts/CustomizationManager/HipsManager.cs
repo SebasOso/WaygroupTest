@@ -1,11 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
-using RPG.Saving;
 using UnityEngine;
 
-public class HipsManager : MonoBehaviour, IEnumerator, IJsonSaveable
+public class HipsManager : MonoBehaviour, IEnumerator
 {
     public static HipsManager Instance;
     [SerializeField] private GameObject mainAccesories;
@@ -82,20 +80,5 @@ public class HipsManager : MonoBehaviour, IEnumerator, IJsonSaveable
         {
             throw new InvalidOperationException();
         }
-    }
-
-    public JToken CaptureAsJToken()
-    {
-        if(hipsPosition < 0)
-        {
-            return JToken.FromObject(0);
-        }
-        return JToken.FromObject(hipsPosition);
-    }
-
-    public void RestoreFromJToken(JToken state)
-    {
-        int newPosition = state.ToObject<int>();
-        hipsPosition = newPosition;
     }
 }

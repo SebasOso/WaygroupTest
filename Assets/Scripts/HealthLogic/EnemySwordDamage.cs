@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using RPG.Combat;
-using RPG.Stats;
 using UnityEngine;
 
 public class EnemySwordDamage : MonoBehaviour
@@ -29,7 +28,7 @@ public class EnemySwordDamage : MonoBehaviour
         alreadyColliderWith.Add(other);
         if(other.TryGetComponent<Health>(out Health health))
         {
-            health.DealDamage(myCollider.GetComponent<BaseStats>().GetStat(Stat.Damage));
+            health.DealDamage(20f);
             if(health.tag == "Player")
             {
                 PlayRandomSound(other.GetComponent<AudioSource>());

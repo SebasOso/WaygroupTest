@@ -26,7 +26,7 @@ public class FootStepManager : MonoBehaviour
             if(GetComponent<Animator>().GetFloat("speed") >= 0)
             {
                 //MUD LAYER MANAGER
-                if(raycastHit.transform.gameObject.layer == 12)
+                if(raycastHit.transform.gameObject.layer == 11)
                 {
                     TryPlayFootStep(floorLeft);
                 }
@@ -45,8 +45,7 @@ public class FootStepManager : MonoBehaviour
         {
             if(GetComponent<Animator>().GetFloat("speed") >= 0)
             {
-                //FLOOR LAYER MANAGER
-                if(raycastHit.transform.gameObject.layer == 12)
+                if(raycastHit.transform.gameObject.layer == 11)
                 {
                     TryPlayFootStep(floorRight);
                 }

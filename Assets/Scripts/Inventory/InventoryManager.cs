@@ -1,17 +1,14 @@
-using System;
+
 using System.Collections;
-using System.Collections.Generic;
 using RPG.Inventories;
-using Newtonsoft.Json.Linq;
-using RPG.Combat;
-using RPG.Saving;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class InventoryManager : MonoBehaviour
 {
     [SerializeField] private Item[] itemsInInventory;
+
+    private Item itemToUse;
 
     [Header("Armor")]
     public InventoryItem shoulderEquipped;
@@ -19,6 +16,9 @@ public class InventoryManager : MonoBehaviour
     [Header("Sounds Settings")]
     [SerializeField] private AudioClip equipClip;
     [SerializeField] private AudioSource audioSource;
+
+    [Header("UI Settings")]
+    [SerializeField] private Button useButton;
     public static InventoryManager Instance { get; set; }
     private void Awake()
     {
@@ -27,7 +27,13 @@ public class InventoryManager : MonoBehaviour
             Instance = this;
         }
     }
-
+    public void UseItem()
+    {
+        if(itemToUse != null)
+        {
+            itemToUse.UseObject();
+        }
+    }
     private void Start() 
     {
         Redraw();
@@ -35,6 +41,8 @@ public class InventoryManager : MonoBehaviour
     private void OnEnable() 
     {
         Redraw();
+        itemToUse = null;
+        useButton.interactable = false;
         if(ShoulderArmorManager.Instance.shoulder != null)
         {
             shoulderEquipped = ShoulderArmorManager.Instance.shoulder.GetInventoryItem();
@@ -73,5 +81,14 @@ public class InventoryManager : MonoBehaviour
     public void SetNewInventoryShoulder(InventoryItem shoulderToEquip, Item itemToDeleteFromInventory)
     {
         StartCoroutine(SetNewShoulder(shoulderToEquip, itemToDeleteFromInventory));
+    }
+    public void SetItemToUse(Item itemToUse)
+    {
+        this.itemToUse = itemToUse;
+        useButton.interactable = true;
+    }
+    public void ButtonOff()
+    {
+        useButton.interactable = false;
     }
 }

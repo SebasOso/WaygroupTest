@@ -1,11 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
-using RPG.Saving;
 using UnityEngine;
 
-public class LeftLegManager : MonoBehaviour, IEnumerator, IJsonSaveable
+public class LeftLegManager : MonoBehaviour, IEnumerator
 {
     public static LeftLegManager Instance;
     [SerializeField] private GameObject mainAccesories;
@@ -82,19 +80,5 @@ public class LeftLegManager : MonoBehaviour, IEnumerator, IJsonSaveable
         {
             throw new InvalidOperationException();
         }
-    }
-    public JToken CaptureAsJToken()
-    {
-        if(lRPosition < 0)
-        {
-            return JToken.FromObject(0);
-        }
-        return JToken.FromObject(lRPosition);
-    }
-
-    public void RestoreFromJToken(JToken state)
-    {
-        int newPosition = state.ToObject<int>();
-        lRPosition = newPosition;
     }
 }

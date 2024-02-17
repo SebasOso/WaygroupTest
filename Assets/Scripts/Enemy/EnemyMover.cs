@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
-using RPG.Saving;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMover : MonoBehaviour, IJsonSaveable
+public class EnemyMover : MonoBehaviour
 {
     [SerializeField] private Animator anim;
     [SerializeField] private float maxSpeed = 8.5f;
@@ -44,16 +42,5 @@ public class EnemyMover : MonoBehaviour, IJsonSaveable
         Vector3 localVelocity = transform.InverseTransformDirection(velocity);
         float speed = localVelocity.z;
         anim.SetFloat("speed", speed);
-    }
-    public JToken CaptureAsJToken()
-    {
-        return transform.position.ToToken();
-    }
-
-    public void RestoreFromJToken(JToken state)
-    {
-        navMesh.enabled = false;
-        transform.position = state.ToVector3();
-        navMesh.enabled = true;
     }
 }

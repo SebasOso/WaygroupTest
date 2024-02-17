@@ -1,16 +1,8 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using UnityEngine.SceneManagement;
-using UnityEngine.Playables;
-using RPG.Saving;
-using Newtonsoft.Json.Linq;
-using RPG.Stats;
 
-public class PlayerLife : MonoBehaviour, IJsonSaveable
+public class PlayerLife : MonoBehaviour
 {
     private bool isDied = false; 
     [Header("Player Health")]
@@ -61,7 +53,6 @@ public class PlayerLife : MonoBehaviour, IJsonSaveable
     {
         isDied = true; 
         isAlive = false;
-        SavingWrapper wrapper = FindAnyObjectByType<SavingWrapper>();
         isAlive = true;
         isDied = false;
     }
@@ -114,14 +105,5 @@ public class PlayerLife : MonoBehaviour, IJsonSaveable
     public static float Hex_to_Dec01(string hex) 
     {
         return Hex_to_Dec(hex)/255f;
-    }
-    public JToken CaptureAsJToken()
-    {
-        return JToken.FromObject(health);
-    }
-
-    public void RestoreFromJToken(JToken state)
-    {
-        health = state.ToObject<float>();
     }
 }

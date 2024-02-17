@@ -1,27 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using RPG.Inventories;
 using UnityEngine.UI;
-using RPG.Combat;
 using UnityEngine;
-using RPG.Saving;
-using Newtonsoft.Json.Linq;
-using System;
 
 public class Item : MonoBehaviour
 {
     [SerializeField] InventoryItem item;
     [SerializeField] Image itemSprite;
-    [SerializeField] string itemId = "PLATANOOOOOOOOOOOOOOOOOOOOO";
+    [SerializeField] string itemId = "Item Id";
     [SerializeField] Shoulder shoulder;
+    [SerializeField] HealthPotion healthPotion;
     [SerializeField] int index;
     [SerializeField] Sprite defaultSprite;
     public void UseObject()
     {
-        if(shoulder != null)
+        if (shoulder != null)
         {
             shoulder.EquipShoulderFromInventory(this.item, this);
         }
+        else if (healthPotion != null)
+        {
+            healthPotion.Heal();
+        }
+    }
+    public void SetItemToUse()
+    {
+        if(this.item == null)
+        {
+            InventoryManager.Instance.ButtonOff();
+            return;
+        }
+        InventoryManager.Instance.SetItemToUse(this);
     }
     public void SetItem(int index)
     {
@@ -29,12 +38,14 @@ public class Item : MonoBehaviour
         itemId = item?.GetItemID();
         shoulder = item?.GetShoulder();
         itemSprite.sprite = item?.GetIcon();
+        healthPotion = item?.GetHealthPotion();
     }
     public void DeleteItemFromInventory()
     {
         this.item = null;
         this.itemId = null;
         this.shoulder = null;
+        this.healthPotion = null;
         this.itemSprite.sprite = defaultSprite;
         MenuManager.Instance.DeleteItemFlomSlot(index);
     }

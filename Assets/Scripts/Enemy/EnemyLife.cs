@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
-using RPG.Stats;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,8 +35,8 @@ public class EnemyLife : MonoBehaviour
     }
     void Update()
     {
-        health = GetComponent<Health>().health;
-        maxHealth = GetComponent<BaseStats>().GetStat(Stat.Health);
+        health = 200f;
+        maxHealth = 200f;
         HealthBarColor();
         UpdateHealthUI();
     }
@@ -117,15 +115,6 @@ public class EnemyLife : MonoBehaviour
     public static float Hex_to_Dec01(string hex) 
     {
         return Hex_to_Dec(hex)/255f;
-    }
-    public JToken CaptureAsJToken()
-    {
-        return JToken.FromObject(health);
-    }
-
-    public void RestoreFromJToken(JToken state)
-    {
-        health = state.ToObject<float>();
     }
     public void OffBar()
     {

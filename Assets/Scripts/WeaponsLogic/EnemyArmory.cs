@@ -1,13 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
 using RPG.Combat;
-using RPG.Saving;
-using RPG.Stats;
 using RPG.Utils;
 using UnityEngine;
 
-public class EnemyArmory : MonoBehaviour, IJsonSaveable, IModifierProvider
+public class EnemyArmory : MonoBehaviour
 {
     [Header("Weapons")]
     [SerializeField] public Weapon defaultWeapon = null;
@@ -37,8 +34,8 @@ public class EnemyArmory : MonoBehaviour, IJsonSaveable, IModifierProvider
     private void Start() 
     {
         currentWeapon.ForceInit();
-        animator.SetFloat("attackSpeed", GetComponent<BaseStats>().GetStat(Stat.AttackSpeed));
-        damage = GetComponent<BaseStats>().GetStat(Stat.Damage);
+        animator.SetFloat("attackSpeed", 1);
+        damage = 20f;
     }
     public void EquipWeapon(Weapon weapon)
     {
@@ -49,11 +46,6 @@ public class EnemyArmory : MonoBehaviour, IJsonSaveable, IModifierProvider
     private void AttachWeapon(Weapon weapon)
     {
         weapon.Spawn(rightHandSocket, leftHandSocket, animator);
-    }
-
-    public JToken CaptureAsJToken()
-    {
-        return JToken.FromObject(currentWeapon.value.name);
     }
     void Shoot()
     {
@@ -72,27 +64,5 @@ public class EnemyArmory : MonoBehaviour, IJsonSaveable, IModifierProvider
     {
         weaponSoundsSource.clip = bowLoad;
         weaponSoundsSource.Play();
-    }
-    public void RestoreFromJToken(JToken state)
-    {
-        string weaponName = state.ToObject<string>();
-        Weapon weapon = Resources.Load<Weapon>(weaponName);
-        EquipWeapon(weapon);
-    }
-
-    public IEnumerable<float> GetAdditiveModifier(Stat stat)
-    {
-        if(stat == Stat.Damage)
-        {
-            yield return currentWeapon.value.GetWeaponDamage();
-        }
-    }
-
-    public IEnumerable<float> GetPercentageModifier(Stat stat)
-    {
-        if(stat == Stat.Damage)
-        {
-            yield return currentWeapon.value.GetPercentageDamage();
-        }
     }
 }

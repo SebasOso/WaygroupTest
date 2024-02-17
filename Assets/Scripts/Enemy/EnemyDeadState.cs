@@ -12,7 +12,6 @@ public class EnemyDeadState : EnemyBaseState
     public override void Enter()
     {
         enemyStateMachine.EnemySoundManager.PlayDie();
-        enemyStateMachine.LootBag.InstantiateLoot(enemyStateMachine.transform.position);
         enemyStateMachine.HealthBar.OffBar();
         enemyStateMachine.ragdoll.ToggleRagdoll(true);
         for (int i = 0; i < enemyStateMachine.WeaponsLogics.Count; i++)

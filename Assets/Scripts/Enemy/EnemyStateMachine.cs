@@ -1,8 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
-using RPG.Combat;
-using RPG.Saving;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -19,8 +16,6 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField]
 
     public bool isAggro;
-    [field: SerializeField] 
-    public LootBag LootBag {get; private set;}
     [field: SerializeField] 
     public FieldOfView FieldOfView {get; private set;}
     [field: SerializeField] 

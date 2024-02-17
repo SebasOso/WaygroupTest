@@ -1,13 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using RPG.Saving;
-using Newtonsoft.Json.Linq;
 using System;
 using UnityEngine.Rendering;
 using RPG.Combat;
 
-public class ShoulderArmorManager : MonoBehaviour, IJsonSaveable
+public class ShoulderArmorManager : MonoBehaviour
 {
     public static ShoulderArmorManager Instance;
     [Header("Position")]
@@ -99,23 +97,5 @@ public class ShoulderArmorManager : MonoBehaviour, IJsonSaveable
         shoulder = shoulderToEquip;
         accesoriesList02[shoulderToEquip.GetIndex()].SetActive(true);
         accesoriesList[shoulderToEquip.GetIndex()].SetActive(true);
-    }
-    public JToken CaptureAsJToken()
-    {
-        if(shoulder != null)
-        {
-            return JToken.FromObject(shoulder.name);
-        }
-        else
-        {
-            return JToken.FromObject(0);
-        }
-    }
-
-    public void RestoreFromJToken(JToken state)
-    {
-        string shoulderName = state.ToObject<string>();
-        Shoulder shoulder = Resources.Load<Shoulder>(shoulderName);
-        this.shoulder = shoulder;
     }
 }

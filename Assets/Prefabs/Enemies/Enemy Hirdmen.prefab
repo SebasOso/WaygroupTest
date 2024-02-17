@@ -3219,16 +3219,13 @@ GameObject:
   - component: {fileID: 586232541755160666}
   - component: {fileID: 5076070900488381897}
   - component: {fileID: 7651816724640120686}
-  - component: {fileID: 1658291562084023642}
   - component: {fileID: 1464276605885785147}
   - component: {fileID: 7159916028286050183}
   - component: {fileID: 1213986963150292888}
   - component: {fileID: 7076544481792781501}
-  - component: {fileID: 7341160249618278958}
   - component: {fileID: 7180135419205021194}
   - component: {fileID: 1194462430149876063}
   - component: {fileID: 1440265205835185236}
-  - component: {fileID: 5031785751902770088}
   - component: {fileID: 3625783807056485249}
   - component: {fileID: 6931636583877011790}
   m_Layer: 0
@@ -3326,6 +3323,7 @@ MonoBehaviour:
   healingEffect: {fileID: 0}
   arrowImpactSound: {fileID: 8300000, guid: be1c4f4fa6df5154283d4a0f863b8ac7, type: 3}
   impactAudioSource: {fileID: 3325473828867700662}
+  isHealing: 0
 --- !u!114 &5076070900488381897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3342,7 +3340,6 @@ MonoBehaviour:
   snowSystem: {fileID: 4568501231292165249}
   isStunned: 0
   isAggro: 0
-  <LootBag>k__BackingField: {fileID: 5031785751902770088}
   <FieldOfView>k__BackingField: {fileID: 7180135419205021194}
   <HealthBar>k__BackingField: {fileID: 1194462430149876063}
   <PatrolPath>k__BackingField: {fileID: 0}
@@ -3372,19 +3369,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swordLogic: {fileID: 8928074185378842918}
---- !u!114 &1658291562084023642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6958142045354269578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73b9ea311b553574b9021e5ba58acd47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uniqueIdentifier: 9a2dba61-39fe-4eb5-9935-4c32135a07f2
 --- !u!114 &1464276605885785147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3457,22 +3441,6 @@ CapsuleCollider:
   m_Height: 1.81
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &7341160249618278958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6958142045354269578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dd760600ba7c1542a7a6a6d94771d74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingLevel: 1
-  characterClass: 2
-  progression: {fileID: 11400000, guid: 73af80ab9edeb5242bec60a1948cd44d, type: 2}
-  levelUpEffect: {fileID: 0}
 --- !u!114 &7180135419205021194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3609,22 +3577,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5031785751902770088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6958142045354269578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75787a9e4f670864cbfbd9a8a52e6214, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lootList:
-  - {fileID: 11400000, guid: 74ed0a7b2aea10047b6950f18abee7ef, type: 2}
-  - {fileID: 11400000, guid: 800efd7b31c067846afda30a9994e7db, type: 2}
-  - {fileID: 11400000, guid: fc41dcaa49502534c9f856db605af0f2, type: 2}
 --- !u!114 &3625783807056485249
 MonoBehaviour:
   m_ObjectHideFlags: 0

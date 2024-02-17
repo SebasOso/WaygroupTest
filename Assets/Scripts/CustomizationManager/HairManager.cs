@@ -1,11 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
-using RPG.Saving;
 using UnityEngine;
 
-public class HairManager : MonoBehaviour, IEnumerator, IJsonSaveable
+public class HairManager : MonoBehaviour, IEnumerator
 {
     public static HairManager Instance;
     [SerializeField] private GameObject mainAccesories;
@@ -82,19 +80,5 @@ public class HairManager : MonoBehaviour, IEnumerator, IJsonSaveable
         {
             throw new InvalidOperationException();
         }
-    }
-    public JToken CaptureAsJToken()
-    {
-        if(hairPosition < 0)
-        {
-            return JToken.FromObject(0);
-        }
-        return JToken.FromObject(hairPosition);
-    }
-
-    public void RestoreFromJToken(JToken state)
-    {
-        int newPosition = state.ToObject<int>();
-        hairPosition = newPosition;
     }
 }

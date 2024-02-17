@@ -1,24 +1,32 @@
 using System;
 using System.Collections.Generic;
 using RPG.Inventories;
-using Newtonsoft.Json.Linq;
-using RPG.Saving;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Waygroup;
 
-public class MenuManager : MonoBehaviour, IJsonSaveable
+public class MenuManager : MonoBehaviour
 {
     public static MenuManager Instance;
+    [Header("Inventory Settings")]
     [SerializeField] private InventoryItem[] slots;
     [SerializeField] private GameObject inventoryCanvasGO;
     [SerializeField] private GridLayoutGroup contentInventory;
     [SerializeField] private List<GameObject> itemsGO;
+
     private PlayerStateMachine playerStateMachine;
 
+    [Header("UI Settings")]
     [SerializeField] private List<GameObject> uiToHide;
+
+    [Header("Audio Settings")]
+    [SerializeField] private AudioClip equipClip;
+    [SerializeField] private AudioSource audioSource;
+
+    [Header("For Debug")]
     public bool isPaused;
+
     public event Action inventoryUpdated;
     // Start is called before the first frame update
     private void Awake() 
@@ -74,6 +82,8 @@ public class MenuManager : MonoBehaviour, IJsonSaveable
     }
     private void Pause()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         InputManager.Instance.CanRun = false;
         InputManager.Instance.IsRunning = false;
         GetComponent<PlayerController>().Stop();
@@ -83,6 +93,8 @@ public class MenuManager : MonoBehaviour, IJsonSaveable
     }
     private void Unpause()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         GetComponent<PlayerController>().Stop();
         isPaused = false;
         Time.timeScale = 1f;
@@ -93,13 +105,11 @@ public class MenuManager : MonoBehaviour, IJsonSaveable
     {
         inventoryCanvasGO.SetActive(true);
         HideAllUI();
-        EventSystem.current.SetSelectedGameObject(itemsGO[0]);
     }
     private void CloseAllMenus()
     {
         inventoryCanvasGO.SetActive(false);
         ShowAllUI();
-        EventSystem.current.SetSelectedGameObject(null);
     }
     private void ShowAllUI()
     {
@@ -159,35 +169,18 @@ public class MenuManager : MonoBehaviour, IJsonSaveable
         }
 
         slots[i] = item;
+
+        PlayEquip();
+
         return true;
     }
     public void DeleteItemFlomSlot(int index)
     {
         slots[index] = null;
     }
-    public JToken CaptureAsJToken()
+    private void PlayEquip()
     {
-        var slotStrings = new string[24];
-        for (int i = 0; i < 24; i++)
-        {
-            if (slots[i] != null)
-            {
-                slotStrings[i] = slots[i].GetItemID();
-            }
-        }
-        return JToken.FromObject(slotStrings);
-    }
-
-    public void RestoreFromJToken(JToken state)
-    {
-        var slotStrings = state.ToObject<String[]>();
-        for (int i = 0; i < 24; i++)
-        {
-            slots[i] = InventoryItem.GetFromID(slotStrings[i]);
-        }
-        if (inventoryUpdated != null)
-        {
-            inventoryUpdated();
-        }
+        audioSource.clip = equipClip;
+        audioSource.Play();
     }
 }

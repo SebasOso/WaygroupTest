@@ -1,11 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
-using RPG.Saving;
 using UnityEngine;
 
-public class TorsoManager : MonoBehaviour, IEnumerator, IJsonSaveable
+public class TorsoManager : MonoBehaviour, IEnumerator
 {
     public static TorsoManager Instance;
     [SerializeField] private GameObject mainAccesories;
@@ -82,19 +80,5 @@ public class TorsoManager : MonoBehaviour, IEnumerator, IJsonSaveable
         {
             throw new InvalidOperationException();
         }
-    }
-    public JToken CaptureAsJToken()
-    {
-        if(torsoPosition < 0)
-        {
-            return JToken.FromObject(0);
-        }
-        return JToken.FromObject(torsoPosition);
-    }
-
-    public void RestoreFromJToken(JToken state)
-    {
-        int newPosition = state.ToObject<int>();
-        torsoPosition = newPosition;
     }
 }
