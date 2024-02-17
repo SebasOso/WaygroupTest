@@ -25,6 +25,11 @@ public class EquipmentPickUp : Interactable
                 pickupUI.SetActive(false);
                 gameObject.SetActive(false);
             }
+            else
+            {
+                pickupUI.SetActive(false);
+                gameObject.SetActive(false);
+            }
         }
     }
     public override void OnInteract()

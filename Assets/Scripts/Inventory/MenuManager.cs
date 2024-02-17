@@ -166,8 +166,25 @@ public class MenuManager : MonoBehaviour
     {
         if(HasItem(item))
         {
-            item.AddQuantity();
-            return false;
+            if(item.GetStackeable() == true)
+            {
+                item.AddQuantity();
+                if (item.GetQuantity() <= 0)
+                {
+                    item.Reset();
+                }
+            }
+            else
+            {
+                int i = FindSlot(item);
+
+                if (i < 0)
+                {
+                    return false;
+                }
+                slots[i] = item;
+                return false;
+            }
         }
         else
         {
@@ -178,12 +195,9 @@ public class MenuManager : MonoBehaviour
                 return false;
             }
             slots[i] = item;
-            if (slots[i].GetQuantity() <= 0)
-            {
-                slots[i].Reset();
-            }
             return true;
         }
+        return true;
     }
     public void DeleteItemFlomSlot(int index)
     {
