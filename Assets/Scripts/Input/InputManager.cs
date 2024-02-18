@@ -9,7 +9,7 @@ namespace Waygroup
 {
     public class InputManager : MonoBehaviour
     {
-        public static InputManager Instance { get; private set; }   
+        public static InputManager Instance { get; private set; }
         [SerializeField] private PlayerInput playerInput;
 
         //READ ONLY VARIABLES
@@ -20,6 +20,7 @@ namespace Waygroup
         [SerializeField] public bool IsInteracting;
         public bool InventoryOpenCloseInput { get; private set; }
         public bool CanRun = false;
+        public float throwTime = 0;
 
         //INPUT ACTIONS
         public InputActionMap _currentMap;
@@ -28,6 +29,8 @@ namespace Waygroup
         public InputAction _runAction;
         public InputAction _inventoryAction;
         public InputAction _interactAction;
+        public InputAction _throwAction;
+        public InputAction _throwReleaseAction;
         private void Awake()
         {
             if(Instance == null)
@@ -41,11 +44,16 @@ namespace Waygroup
             _runAction = _currentMap.FindAction("Run");
             _interactAction = _currentMap.FindAction("Interact");
             _inventoryAction = _currentMap.FindAction("InventoryOpenClose");
+            _throwAction = _currentMap.FindAction("Throw");
+            _throwReleaseAction = _currentMap.FindAction("ThrowRelease");
+            
 
             _moveAction.performed += OnMove;
             _lookAction.performed += OnLook;
             _runAction.performed += OnRun;
             _interactAction.performed += OnInteract;
+            _throwAction.performed += OnThrow;
+            _throwReleaseAction.performed += OnThrowRelease;
 
             _moveAction.canceled += OnMove;
             _lookAction.canceled += OnLook;
@@ -55,6 +63,7 @@ namespace Waygroup
         private void Update()
         {
             InventoryOpenCloseInput = _inventoryAction.WasPressedThisFrame();
+            throwTime = _throwAction.GetTimeoutCompletionPercentage();
         }
         private void OnInventory(InputAction.CallbackContext context)
         {
@@ -103,6 +112,14 @@ namespace Waygroup
             {
                 IsInteracting = false;
             }
+        }
+        private void OnThrow(InputAction.CallbackContext context)
+        {
+            
+        }
+        private void OnThrowRelease(InputAction.CallbackContext context)
+        {
+            ThrowManager.Instance.Throw(throwTime);
         }
         private void OnEnable()
         {

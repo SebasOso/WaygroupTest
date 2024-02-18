@@ -80,6 +80,24 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Throw"",
+                    ""type"": ""Button"",
+                    ""id"": ""97642540-de42-4799-b051-a03c4086d236"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ThrowRelease"",
+                    ""type"": ""Button"",
+                    ""id"": ""072250ed-fbe3-446e-b3b2-07376876c584"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -280,6 +298,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""029a63c6-06b0-45e1-9813-c92574adb628"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": ""Hold(duration=3)"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Throw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f4c1b9cb-2825-4b18-974d-e2cf00aea8dc"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ThrowRelease"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -333,6 +373,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_InventoryOpenClose = m_Player.FindAction("InventoryOpenClose", throwIfNotFound: true);
         m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_Throw = m_Player.FindAction("Throw", throwIfNotFound: true);
+        m_Player_ThrowRelease = m_Player.FindAction("ThrowRelease", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -400,6 +442,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_InventoryOpenClose;
     private readonly InputAction m_Player_Run;
     private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_Throw;
+    private readonly InputAction m_Player_ThrowRelease;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -410,6 +454,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @InventoryOpenClose => m_Wrapper.m_Player_InventoryOpenClose;
         public InputAction @Run => m_Wrapper.m_Player_Run;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @Throw => m_Wrapper.m_Player_Throw;
+        public InputAction @ThrowRelease => m_Wrapper.m_Player_ThrowRelease;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -437,6 +483,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @Throw.started += instance.OnThrow;
+            @Throw.performed += instance.OnThrow;
+            @Throw.canceled += instance.OnThrow;
+            @ThrowRelease.started += instance.OnThrowRelease;
+            @ThrowRelease.performed += instance.OnThrowRelease;
+            @ThrowRelease.canceled += instance.OnThrowRelease;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -459,6 +511,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @Throw.started -= instance.OnThrow;
+            @Throw.performed -= instance.OnThrow;
+            @Throw.canceled -= instance.OnThrow;
+            @ThrowRelease.started -= instance.OnThrowRelease;
+            @ThrowRelease.performed -= instance.OnThrowRelease;
+            @ThrowRelease.canceled -= instance.OnThrowRelease;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -511,5 +569,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnInventoryOpenClose(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnThrow(InputAction.CallbackContext context);
+        void OnThrowRelease(InputAction.CallbackContext context);
     }
 }

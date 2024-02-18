@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             CanMove = false;
+            _animator.SetBool("IsRunning", false);
             Falling();
         }
     }

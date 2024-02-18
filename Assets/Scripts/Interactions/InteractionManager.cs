@@ -24,6 +24,7 @@ public class InteractionManager : MonoBehaviour
     }
     void Update()
     {
+        if (ThrowManager.Instance.isBeingCarried) { return; }
         if(canInteract)
         {
             HandleInteractionInput();
@@ -48,6 +49,11 @@ public class InteractionManager : MonoBehaviour
                 {
                     currentInteractable.OnFocus();
                 }
+            }
+            else if(currentInteractable)
+            {
+                currentInteractable.OnLoseFocus();
+                currentInteractable = null;
             }
         }
         else if(currentInteractable)

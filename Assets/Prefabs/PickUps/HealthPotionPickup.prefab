@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_Beer_Mug_02
       objectReference: {fileID: 0}
+    - target: {fileID: 111052, guid: 5d004088b704ad6418ad52b16d029285, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 491110, guid: 5d004088b704ad6418ad52b16d029285, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5303
@@ -64,7 +68,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 64688267186219830, guid: 5d004088b704ad6418ad52b16d029285, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -84,15 +89,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3146898473443088037, guid: f2d8117d6458b9a4b8627a5d9904cdfe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -72.12
       objectReference: {fileID: 0}
     - target: {fileID: 3146898473443088037, guid: f2d8117d6458b9a4b8627a5d9904cdfe, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.0867474
       objectReference: {fileID: 0}
     - target: {fileID: 3146898473443088037, guid: f2d8117d6458b9a4b8627a5d9904cdfe, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 172.94
       objectReference: {fileID: 0}
     - target: {fileID: 3146898473443088037, guid: f2d8117d6458b9a4b8627a5d9904cdfe, type: 3}
       propertyPath: m_LocalRotation.w
@@ -100,15 +105,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3146898473443088037, guid: f2d8117d6458b9a4b8627a5d9904cdfe, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3146898473443088037, guid: f2d8117d6458b9a4b8627a5d9904cdfe, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3146898473443088037, guid: f2d8117d6458b9a4b8627a5d9904cdfe, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3146898473443088037, guid: f2d8117d6458b9a4b8627a5d9904cdfe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -132,6 +137,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 17f33c7e08e263948b30fd9e9cf6dc5b, type: 2}
     m_RemovedComponents:
     - {fileID: 8820202949239977552, guid: f2d8117d6458b9a4b8627a5d9904cdfe, type: 3}
+    - {fileID: 3608902021061687231, guid: f2d8117d6458b9a4b8627a5d9904cdfe, type: 3}
     m_RemovedGameObjects:
     - {fileID: 7687901315341872950, guid: f2d8117d6458b9a4b8627a5d9904cdfe, type: 3}
     m_AddedGameObjects:
@@ -142,6 +148,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8065074805426644848, guid: f2d8117d6458b9a4b8627a5d9904cdfe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 327803377602964938}
+    - targetCorrespondingSourceObject: {fileID: 8065074805426644848, guid: f2d8117d6458b9a4b8627a5d9904cdfe, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5993550997075639379}
   m_SourcePrefab: {fileID: 100100000, guid: f2d8117d6458b9a4b8627a5d9904cdfe, type: 3}
 --- !u!1 &102699706419148697 stripped
 GameObject:
@@ -162,6 +171,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemToPick: {fileID: 11400000, guid: 17f33c7e08e263948b30fd9e9cf6dc5b, type: 2}
   pickupUI: {fileID: 1489444760893410368}
+--- !u!65 &5993550997075639379
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102699706419148697}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.39125824, y: 0.5257882, z: 0.46647644}
+  m_Center: {x: 0.0084114075, y: 0.26064843, z: 0.11205292}
 --- !u!1 &1489444760893410368 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8803314644414389417, guid: f2d8117d6458b9a4b8627a5d9904cdfe, type: 3}
