@@ -303,7 +303,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""029a63c6-06b0-45e1-9813-c92574adb628"",
                     ""path"": ""<Keyboard>/t"",
-                    ""interactions"": ""Hold(duration=3)"",
+                    ""interactions"": ""Hold(duration=1)"",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
                     ""action"": ""Throw"",

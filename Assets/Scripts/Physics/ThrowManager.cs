@@ -41,7 +41,8 @@ public class ThrowManager : MonoBehaviour
             InteractionManager.Instance.canInteract = true;
             InputManager.Instance.IsInteracting = false;
 
-            float totalForce = holdingTime * baseForce;
+            float force = Mathf.Clamp(holdingTime, 0f, 1f);
+            float totalForce = force * baseForce;
 
 
             currentThrowable.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * totalForce, ForceMode.Impulse);
