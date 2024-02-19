@@ -19,3 +19,4 @@ MonoBehaviour:
   healthPotion: {fileID: 11400000, guid: 6135981d2456d484ebf55279956886ff, type: 2}
   isStackeable: 1
   quantity: 1
+  objectToDrop: {fileID: 102699706419148697, guid: 1d798238c54345745bab6178bc81b9d5, type: 3}

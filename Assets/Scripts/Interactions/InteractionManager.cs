@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,9 @@ public class InteractionManager : MonoBehaviour
     [SerializeField] private float interactionDistance = default;
     [SerializeField] private LayerMask interactionLayer = 16;
     [SerializeField] public bool canInteract = true;
+
+    private bool firstGrab = false;
+    public event Action OnFirstGrab;
 
     [Header("For Debugging")]
     [SerializeField] private Interactable currentInteractable;
@@ -35,6 +39,11 @@ public class InteractionManager : MonoBehaviour
     {
         if(InputManager.Instance.IsInteracting && currentInteractable != null && Physics.Raycast(Camera.main.ViewportPointToRay(interactionRayPoint), out RaycastHit hit, interactionDistance, interactionLayer))
         {
+            if(firstGrab == false)
+            {
+                firstGrab = true;
+                OnFirstGrab.Invoke();
+            }
             currentInteractable.OnInteract();
         }
     }

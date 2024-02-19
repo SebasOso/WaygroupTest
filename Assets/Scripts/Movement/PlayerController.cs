@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     public bool CanMove { get;  set; } = true;
 
+    [Header("Position Debug")]
+    public Vector3 position;
+
     //MOVEMENT VARIABLES
     private CharacterController _characterController;
     private InputManager _inputManager;
@@ -43,6 +46,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        position = transform.position;
         if(GetComponent<ForceReceiver>().isGrounded)
         {
             Move();

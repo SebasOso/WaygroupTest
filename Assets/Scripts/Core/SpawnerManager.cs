@@ -17,11 +17,6 @@ public class SpawnerManager : MonoBehaviour
             Instance = this;
         }
     }
-
-    void Start()
-    {
-        StartCoroutine(SpawnEnemy());
-    }
     private IEnumerator SpawnEnemy()
     {
         yield return new WaitForSeconds(timeToSpawn);

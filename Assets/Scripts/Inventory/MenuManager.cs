@@ -120,6 +120,7 @@ public class MenuManager : MonoBehaviour
         {
             ui.SetActive(true);
         }
+        uiToHide[2].SetActive(false);
     }
     private void HideAllUI()
     {

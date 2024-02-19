@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,12 +13,21 @@ public class ThrowManager : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float baseForce = 100f;
     [SerializeField] private GameObject uIToThrow;
+
+    //Tutorial
+    private bool firstTime;
+    private bool finishRecord;
+    public event Action OnFirstThrow;
     private void Awake()
     {
         if(Instance == null)
         {
             Instance = this;
         }
+    }
+    private void Start()
+    {
+        TutorialManager.Instance.OnRecord03 += FinishRecord;
     }
     public void Grab(Throwable objectToGrab)
     {
@@ -33,6 +43,12 @@ public class ThrowManager : MonoBehaviour
     }
     public void Throw(float holdingTime)
     {
+        if(finishRecord == false) { return; }
+        if(firstTime == false)
+        {
+            OnFirstThrow.Invoke();  
+            firstTime = true;
+        }
         if(currentThrowable != null && isBeingCarried)
         {
             currentThrowable.GetComponent<Rigidbody>().isKinematic = false;
@@ -46,10 +62,15 @@ public class ThrowManager : MonoBehaviour
 
 
             currentThrowable.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * totalForce, ForceMode.Impulse);
+            currentThrowable.SetDanger();
 
             isBeingCarried = false;
             currentThrowable = null;
             uIToThrow.SetActive(false);
         }
+    }
+    public void FinishRecord()
+    {
+        finishRecord = true;
     }
 }

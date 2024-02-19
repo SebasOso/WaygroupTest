@@ -19,6 +19,7 @@ namespace RPG.Inventories
         [SerializeField] HealthPotion healthPotion = null;
         [SerializeField] private bool isStackeable = false;
         [SerializeField] private int quantity = 1;
+        [SerializeField] private GameObject objectToDrop = null;
         // STATE
         static Dictionary<string, InventoryItem> itemLookupCache;
 
@@ -94,6 +95,10 @@ namespace RPG.Inventories
         public void Reset()
         {
             quantity = 1;
+        }
+        public GameObject GetObjectToDrop()
+        {
+            return objectToDrop;
         }
         // PRIVATE
 

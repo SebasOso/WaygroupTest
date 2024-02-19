@@ -3589,8 +3589,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c73bef375a211c478d273e1657b2871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorLeft: {fileID: 0}
-  floorRight: {fileID: 0}
+  floorLeft: {fileID: 8300000, guid: 987c298a075cc9549ae4b92d00645af1, type: 3}
+  floorRight: {fileID: 8300000, guid: ce25fbffd63ed0f4bb113ecf4534d3a1, type: 3}
   audioSource: {fileID: 1987031919197537999}
   stepCooldown: 0.5
 --- !u!114 &6931636583877011790

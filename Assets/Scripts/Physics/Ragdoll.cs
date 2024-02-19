@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Linq;
 
 public class Ragdoll : MonoBehaviour
 {
@@ -34,5 +35,13 @@ public class Ragdoll : MonoBehaviour
         }
         navMeshAgent.enabled = !isRagdoll;
         animator.enabled = !isRagdoll;
+    }
+    public void ApplyForce(Vector3 force, Vector3 pointToForce)
+    {
+        ToggleRagdoll(true);
+
+        Rigidbody hitRb = rigidbodies.OrderBy(rigidbody => Vector3.Distance(rigidbody.position, pointToForce)).First();
+
+        hitRb.AddForceAtPosition(force, pointToForce, ForceMode.Impulse);
     }
 }

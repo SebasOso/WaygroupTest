@@ -41,6 +41,27 @@ public class Item : MonoBehaviour
             }
         }
     }
+    public void DropObject()
+    {
+        if(shoulder != null)
+        {
+            Vector3 dropPosition = player.GetComponent<PlayerController>().position;
+            GameObject gameObject = Instantiate(item.GetObjectToDrop(), dropPosition, Quaternion.identity);
+            DeleteItemFromInventory();
+        }
+        else if(healthPotion != null)
+        {
+            Vector3 dropPosition = player.GetComponent<PlayerController>().position;
+            GameObject gameObject = Instantiate(item.GetObjectToDrop(), dropPosition, Quaternion.identity);
+            this.item.RestQuantity();
+            quantity--;
+            quantityText.text = quantity.ToString();
+            if (quantity < 1)
+            {
+                DeleteItemFromInventory();
+            }
+        }
+    }
     public void SetItemToUse()
     {
         if(this.item == null)

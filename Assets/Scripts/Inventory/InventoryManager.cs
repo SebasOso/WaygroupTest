@@ -19,6 +19,7 @@ public class InventoryManager : MonoBehaviour
 
     [Header("UI Settings")]
     [SerializeField] private Button useButton;
+    [SerializeField] private Button dropButton;
     public static InventoryManager Instance { get; set; }
     private void Awake()
     {
@@ -34,6 +35,13 @@ public class InventoryManager : MonoBehaviour
             itemToUse.UseObject();
         }
     }
+    public void DropItem()
+    {
+        if (itemToUse != null)
+        {
+            itemToUse.DropObject();
+        }
+    }
     private void Start() 
     {
         Redraw();
@@ -43,7 +51,8 @@ public class InventoryManager : MonoBehaviour
         Redraw();
         itemToUse = null;
         useButton.interactable = false;
-        if(ShoulderArmorManager.Instance.shoulder != null)
+        dropButton.interactable = false;
+        if (ShoulderArmorManager.Instance.shoulder != null)
         {
             shoulderEquipped = ShoulderArmorManager.Instance.shoulder.GetInventoryItem();
         }
@@ -86,9 +95,11 @@ public class InventoryManager : MonoBehaviour
     {
         this.itemToUse = itemToUse;
         useButton.interactable = true;
+        dropButton.interactable = true;
     }
     public void ButtonOff()
     {
         useButton.interactable = false;
+        dropButton.interactable = false;
     }
 }
