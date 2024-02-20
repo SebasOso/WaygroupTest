@@ -1,18 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
-using JetBrains.Annotations;
+
 using UnityEngine;
 
+/// <summary>
+/// Manages footstep sounds based on player movement.
+/// </summary>
 public class FootStepManager : MonoBehaviour
 {
+    [Header("Audio Settings")]
     [SerializeField] AudioClip floorLeft;
     [SerializeField] AudioClip floorRight;
-    private RaycastHit raycastHit;
     [SerializeField] AudioSource audioSource;
 
+    //Variables for the logic
+    private RaycastHit raycastHit;
     private float lastStepTime;
     public float stepCooldown = 0.5f;
 
+    /// <summary>
+    /// Plays the left footstep sound.
+    /// </summary>
     public void LeftFootStep()
     {
         if(GetComponent<Animator>().GetFloat("speed") <= 1)
@@ -25,7 +31,6 @@ public class FootStepManager : MonoBehaviour
         {
             if(GetComponent<Animator>().GetFloat("speed") >= 0)
             {
-                //MUD LAYER MANAGER
                 if(raycastHit.transform.gameObject.layer == 11)
                 {
                     TryPlayFootStep(floorLeft);
@@ -33,6 +38,10 @@ public class FootStepManager : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// Plays the right footstep sound.
+    /// </summary>
     public void RightFootStep()
     {
         if(GetComponent<Animator>().GetFloat("speed") <= 1)
@@ -52,6 +61,10 @@ public class FootStepManager : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// Attempts to play the footstep sound with a cooldown.
+    /// </summary>
     private void TryPlayFootStep(AudioClip audioClip)
     {
         if (Time.time - lastStepTime > stepCooldown)
@@ -60,6 +73,10 @@ public class FootStepManager : MonoBehaviour
             lastStepTime = Time.time;
         }
     }
+
+    /// <summary>
+    /// Plays the footstep sound.
+    /// </summary>
     public void PlayFootStep(AudioClip audioClip)
     {
        audioSource.clip = audioClip;

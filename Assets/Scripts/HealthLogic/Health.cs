@@ -3,6 +3,10 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.VFX;
 
+
+/// <summary>
+/// Manages the health and damage-taking functionality of a character (enemies and player).
+/// </summary>
 public class Health : MonoBehaviour
 {
     [Header("Armor")]
@@ -11,6 +15,7 @@ public class Health : MonoBehaviour
     //Events
     public event Action OnDie;
     public event Action OnTakeDamage;
+    public event Action OnHeal;
 
     //Health Main Variable
     public float health = 200;
@@ -31,6 +36,7 @@ public class Health : MonoBehaviour
     [SerializeField] private AudioSource impactAudioSource;
 
     [HideInInspector] public bool isHealing;
+
     private void Start()
     {
         health = 200;
@@ -46,6 +52,11 @@ public class Health : MonoBehaviour
             isFullHealth = true;
         }
     }
+
+    /// <summary>
+    /// Deals damage to the character.
+    /// </summary>
+    /// <param name="damage">The amount of damage to deal.</param>
     public void DealDamage(float damage)
     {
         if(health <= 0){return;}
@@ -58,6 +69,7 @@ public class Health : MonoBehaviour
         float reducedDamage = armor / (armor + 100);
         float finalDamage = damage * (1 - reducedDamage);
         health = Mathf.Max(health - finalDamage, 0);
+        Debug.Log("Loss Health = " + finalDamage);
         if(gameObject.CompareTag("Enemy"))
         {
             if(GetComponent<EnemyStateMachine>().isStunned)
@@ -81,8 +93,18 @@ public class Health : MonoBehaviour
             Die();
         }
     }
+
+    /// <summary>
+    /// Heals the character over time.
+    /// </summary>
+    /// <param name="regenerationRate">The rate of health regeneration.</param>
     public void HealthPotion(float regenerationRate)
     {
+        if(TutorialManager.Instance.isFirstHeal == false)
+        {
+            TutorialManager.Instance.isFirstHeal = true;
+            OnHeal?.Invoke();
+        }
         StartCoroutine(Regeneration(regenerationRate));
     }
     private IEnumerator Regeneration(float regenerationRate)
@@ -112,6 +134,11 @@ public class Health : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// Deals arrow damage to the character.
+    /// </summary>
+    /// <param name="damage">The amount of arrow damage.</param>
     public void DealArrowDamage(float damage)
     {
         if (health <= 0) { return; }
@@ -130,6 +157,10 @@ public class Health : MonoBehaviour
             Die();
         }
     }
+
+    /// <summary>
+    /// Plays the arrow impact sound.
+    /// </summary>
     public void PlayArrowImpact()
     {
         impactAudioSource.clip = arrowImpactSound;

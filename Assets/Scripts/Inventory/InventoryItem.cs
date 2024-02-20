@@ -22,38 +22,6 @@ namespace RPG.Inventories
         [SerializeField] private GameObject objectToDrop = null;
         // STATE
         static Dictionary<string, InventoryItem> itemLookupCache;
-
-        // PUBLIC
-
-        /// <summary>
-        /// Get the inventory item instance from its UUID.
-        /// </summary>
-        /// <param name="itemID">
-        public static InventoryItem GetFromID(string itemID)
-        {
-            if (itemLookupCache == null)
-            {
-                itemLookupCache = new Dictionary<string, InventoryItem>();
-                var itemList = Resources.LoadAll<InventoryItem>("");
-                foreach (var item in itemList)
-                {
-                    if (itemLookupCache.ContainsKey(item.itemID))
-                    {
-                        Debug.LogError(string.Format("Looks like there's a duplicate GameDevTV.UI.InventorySystem ID for objects: {0} and {1}", itemLookupCache[item.itemID], item));
-                        continue;
-                    }
-
-                    itemLookupCache[item.itemID] = item;
-                }
-            }
-
-            if (itemID == null || !itemLookupCache.ContainsKey(itemID))
-            {
-                Debug.Log("No se pudo encontrar el id del item");
-                return null;
-            }
-            return itemLookupCache[itemID];
-        }
         public Weapon GetWeapon()
         {
             return weapon;

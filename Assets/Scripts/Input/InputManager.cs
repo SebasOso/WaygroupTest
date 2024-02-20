@@ -7,13 +7,16 @@ using UnityEngine.InputSystem.Interactions;
 
 namespace Waygroup
 {
+
+    /// <summary>
+    /// Manages player input actions and provides access to input data.
+    /// </summary>
     public class InputManager : MonoBehaviour
     {
         public static InputManager Instance { get; private set; }
         [SerializeField] private PlayerInput playerInput;
 
         //READ ONLY VARIABLES
-        public event Action OnInteraction;
         public Vector2 Move { get; private set; }
         public Vector2 Look { get; private set; }
         [SerializeField] public bool IsRunning;
@@ -38,6 +41,8 @@ namespace Waygroup
                 Instance = this;
             }
             HideCursor();
+
+            // Find the actions and assign them
             _currentMap = playerInput.currentActionMap;
             _moveAction = _currentMap.FindAction("Move");
             _lookAction = _currentMap.FindAction("Look");
@@ -46,8 +51,8 @@ namespace Waygroup
             _inventoryAction = _currentMap.FindAction("InventoryOpenClose");
             _throwAction = _currentMap.FindAction("Throw");
             _throwReleaseAction = _currentMap.FindAction("ThrowRelease");
-            
 
+            // Subscribe to input action events
             _moveAction.performed += OnMove;
             _lookAction.performed += OnLook;
             _runAction.performed += OnRun;
@@ -65,27 +70,33 @@ namespace Waygroup
             InventoryOpenCloseInput = _inventoryAction.WasPressedThisFrame();
             throwTime = _throwAction.GetTimeoutCompletionPercentage();
         }
-        private void OnInventory(InputAction.CallbackContext context)
-        {
-            
-        }
+
+        // Hides the cursor by locking its state and making it invisible.
         private void HideCursor()
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
 
+        // Handles movement input.
         private void OnMove(InputAction.CallbackContext context)
         {
             if (MenuManager.Instance.isPaused) { return; }
             Move = context.ReadValue<Vector2>();
         }
 
+        // Handles look input.
         private void OnLook(InputAction.CallbackContext context)
         {
-            if (MenuManager.Instance.isPaused) { return; }
+            if (MenuManager.Instance.isPaused)
+            {
+                Look = Vector2.zero;
+                return;
+            }
             Look = context.ReadValue<Vector2>();
         }
+
+        // Handles running input.
         private void OnRun(InputAction.CallbackContext context)
         {
             if (MenuManager.Instance.isPaused) { return; }
@@ -94,18 +105,24 @@ namespace Waygroup
                 IsRunning = true;
             }
         }
+
+        // Handles walking input.
         private void OnWalk(InputAction.CallbackContext context)
         {
-            if(MenuManager.Instance.isPaused) { return; }
+            if (MenuManager.Instance.isPaused) { return; }
             IsRunning = false;
         }
+
+        // Handles interaction input.
         private void OnInteract(InputAction.CallbackContext context)
         {
-            if(InteractionManager.Instance.canInteract == true)
+            if (InteractionManager.Instance.canInteract == true)
             {
                 IsInteracting = true;
             }
         }
+
+        // Handles no-interaction input.
         private void OnNoInteract(InputAction.CallbackContext context)
         {
             if (InteractionManager.Instance.canInteract == true)
@@ -113,23 +130,29 @@ namespace Waygroup
                 IsInteracting = false;
             }
         }
+
+        // Handles throw input.
         private void OnThrow(InputAction.CallbackContext context)
         {
-            
+            // Placeholder, can be extended.
         }
+
+        // Handles throw release input.
         private void OnThrowRelease(InputAction.CallbackContext context)
         {
             ThrowManager.Instance.Throw(throwTime);
         }
+
+        // Enables the input action map.
         private void OnEnable()
         {
             _currentMap.Enable();
         }
 
+        // Disables the input action map.
         private void OnDisable()
         {
             _currentMap.Disable();
         }
     }
 }
-

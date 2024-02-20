@@ -1,15 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+
 using UnityEngine;
 
+
+/// <summary>
+/// Manages the player's armor and equipment.
+/// </summary>
 public class ArmorManager : MonoBehaviour
 {
     public static ArmorManager Instance { get; private set; }  
 
-    public float totalArmor;
-    public float shoulderArmor;
+    //Variables to calculate the armor
+    private float totalArmor;
+    private float shoulderArmor;
 
+    //Player reference
     private Health playerHealth;
 
     private void Awake()
@@ -24,6 +28,10 @@ public class ArmorManager : MonoBehaviour
         playerHealth = GetComponent<Health>();
         CalculateTotalArmor();
     }
+
+    /// <summary>
+    /// Equips shoulder armor to the player.
+    /// </summary>
     public void EquipShoulder(Shoulder shoulderToEquip)
     {
         ShoulderArmorManager.Instance.SetShoulders(shoulderToEquip);
@@ -31,6 +39,10 @@ public class ArmorManager : MonoBehaviour
         CalculateTotalArmor();
         ArmorDisplay.Instance.SetArmor();
     }
+
+    /// <summary>
+    /// Calculates the total armor value based on equipped armor pieces.
+    /// </summary>
     private void CalculateTotalArmor()
     {
         if(ShoulderArmorManager.Instance.shoulder != null)
@@ -40,6 +52,11 @@ public class ArmorManager : MonoBehaviour
         totalArmor = shoulderArmor;
         playerHealth.armor = totalArmor;
     }
+
+    /// <summary>
+    /// Retrieves the total armor value of the player.
+    /// </summary>
+    /// <returns>Total armor value</returns>
     public float GetArmor()
     {
         return playerHealth.armor;

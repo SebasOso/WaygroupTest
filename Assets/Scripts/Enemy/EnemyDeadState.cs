@@ -13,7 +13,6 @@ public class EnemyDeadState : EnemyBaseState
     {
         enemyStateMachine.EnemySoundManager.PlayDie();
         enemyStateMachine.HealthBar.OffBar();
-        //enemyStateMachine.ragdoll.ToggleRagdoll(true);
         for (int i = 0; i < enemyStateMachine.WeaponsLogics.Count; i++)
         {
             enemyStateMachine.WeaponsLogics[i].SetActive(false);

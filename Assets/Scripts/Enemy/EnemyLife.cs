@@ -1,97 +1,98 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
+/// <summary>
+/// Manages the health and UI representation of an enemy entity.
+/// </summary>
 public class EnemyLife : MonoBehaviour
 {
-    private bool isDied = false; 
     [Header("Player Health")]
-    public float health;
-    private float maxHealth;
-
+    public float health; 
+    private float maxHealth; 
 
     [Header("UI Elements")]
-    public Image frontHealth;
-    public Image backHealth;
-    public Image baseHealth;
+    public Image frontHealth; 
+    public Image backHealth; 
+    public Image baseHealth; 
     public float lerpTimer; 
-    public float chipSpeed = 2f;
-    private Color32 DamageHealthColor = new Color32 (128, 128, 0, 255);
-    
-    public static bool isAlive = true;
+    public float chipSpeed = 2f; 
+    private Color32 DamageHealthColor = new Color32(128, 128, 0, 255); 
 
+    public static bool isAlive = true; 
 
-
-    private Animator anim;
-    
-
-
+    /// <summary>
+    /// Initializes the enemy as alive when the script is loaded.
+    /// </summary>
     public void Awake()
     {
         isAlive = true;
-        anim = GetComponent<Animator>();
     }
+
+    /// <summary>
+    /// Updates the enemy's health and UI elements.
+    /// </summary>
     void Update()
     {
-        health = 200f;
-        maxHealth = 200f;
-        HealthBarColor();
-        UpdateHealthUI();
+        health = 200f; 
+        maxHealth = 200f; 
+        HealthBarColor();  
+        UpdateHealthUI(); 
     }
 
-    private void DeathAnimation()
-    {
-        isDied = true; 
-        isAlive = false;
-        isAlive = true;
-        isDied = false;
-    }
-
+    /// <summary>
+    /// Handles the death of the enemy by pausing the game.
+    /// </summary>
     public void EnemyDie()
     {
-        Time.timeScale = 0f;
+        Time.timeScale = 0f; 
     }
-    
+
+    /// <summary>
+    /// Updates the color of the health bar based on the current health percentage.
+    /// </summary>
     private void HealthBarColor()
     {
-        if (health <= maxHealth && health >= maxHealth * 0.6f) 
+        if (health <= maxHealth && health >= maxHealth * 0.6f)
         {
-            frontHealth.color = GetColorFromString("FF2613");
+            frontHealth.color = GetColorFromString("FF2613"); 
         }
-        
-        if (health <= maxHealth * 0.5f && health >= maxHealth * 0.3f) 
+        else if (health <= maxHealth * 0.5f && health >= maxHealth * 0.3f)
         {
-            frontHealth.color = GetColorFromString("FF2613");
+            frontHealth.color = GetColorFromString("FF2613"); 
         }
-        
-        if (health <= maxHealth * 0.2f && health >= 0f) 
+        else if (health <= maxHealth * 0.2f && health >= 0f)
         {
-            frontHealth.color = GetColorFromString("FF2613");
+            frontHealth.color = GetColorFromString("FF2613"); 
         }
     }
+
+    /// <summary>
+    /// Updates the health UI elements based on the current health.
+    /// </summary>
     public void UpdateHealthUI()
     {
         float fillF = frontHealth.fillAmount;
         float fillB = backHealth.fillAmount;
         float hFraction = health / maxHealth;
+
         if (fillB > hFraction)
         {
             frontHealth.fillAmount = hFraction;
             backHealth.color = DamageHealthColor;
             lerpTimer += Time.deltaTime;
             float percentComplete = lerpTimer / chipSpeed;
-            percentComplete = percentComplete * percentComplete; 
+            percentComplete = percentComplete * percentComplete;
             backHealth.fillAmount = Mathf.Lerp(fillB, hFraction, percentComplete);
         }
+
         if (fillF < hFraction)
         {
             backHealth.color = Color.white;
             backHealth.fillAmount = hFraction;
             lerpTimer += Time.deltaTime;
             float percentComplete = lerpTimer / chipSpeed;
-            percentComplete = percentComplete * percentComplete; 
+            percentComplete = percentComplete * percentComplete;
             frontHealth.fillAmount = Mathf.Lerp(fillF, backHealth.fillAmount, percentComplete);
         }
     }

@@ -1,7 +1,12 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
+/// <summary>
+/// Manages the player's life UI.
+/// </summary>
 public class PlayerLife : MonoBehaviour
 {
     private bool isDied = false; 
@@ -17,12 +22,14 @@ public class PlayerLife : MonoBehaviour
     public float chipSpeed = 2f;
     private Color32 DamageHealthColor = new Color32 (219, 49, 49, 255);
     
+    //Flags
     public static bool isAlive = true;
 
 
-
+    //References
     private Animator anim;
     
+    //Singleton
     public static PlayerLife Instance { get; private set; }
     
 
@@ -38,29 +45,30 @@ public class PlayerLife : MonoBehaviour
         maxHealth = 200;
         health = GetComponent<Health>().health;
     }
-    // Update is called once per frame
+
     void Update()
     {
         health = GetComponent<Health>().health;
         UpdateHealthUI();
         if (health <= 0 && !isDied)
         {
-            DeathAnimation();
+            Death();
         }
     }
 
-    private void DeathAnimation()
+    /// <summary>
+    /// Initiates the death method player.
+    /// </summary>
+    private void Death()
     {
         isDied = true; 
         isAlive = false;
-        isAlive = true;
-        isDied = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void PlayerDie()
-    {
-        Time.timeScale = 0f;
-    }
+    /// <summary>
+    /// Updates the health UI based on the player's current health.
+    /// </summary>
     public void UpdateHealthUI()
     {
         float fillF = frontHealth.fillAmount;
@@ -86,6 +94,10 @@ public class PlayerLife : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// Converts a hex color string to a Color object.
+    /// </summary>
     public static Color GetColorFromString(string color) 
     {
         float red = Hex_to_Dec01(color.Substring(0,2));
@@ -98,10 +110,18 @@ public class PlayerLife : MonoBehaviour
         }
         return new Color(red, green, blue, alpha);
     }
+
+    /// <summary>
+    /// Converts a hex string to a decimal value.
+    /// </summary>
     public static int Hex_to_Dec(string hex) 
     {
         return Convert.ToInt32(hex, 16);
     }
+
+    /// <summary>
+    /// Converts a hex string to a decimal value between 0 and 1.
+    /// </summary>
     public static float Hex_to_Dec01(string hex) 
     {
         return Hex_to_Dec(hex)/255f;

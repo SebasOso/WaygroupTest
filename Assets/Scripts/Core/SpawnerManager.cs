@@ -21,6 +21,8 @@ public class SpawnerManager : MonoBehaviour
     {
         yield return new WaitForSeconds(timeToSpawn);
         GameObject enemy = Instantiate(enemyToSpawn, spawnPosition.transform.position, spawnPosition.transform.rotation);
+        Health enemyHealth = enemy.GetComponent<Health>();
+        enemyHealth.OnDie += () => TutorialManager.Instance.PlayEnemies03();
     }
     public void Spawn()
     {

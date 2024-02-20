@@ -2,13 +2,19 @@ using System;
 using System.Collections.Generic;
 using RPG.Inventories;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Waygroup;
 
+/// <summary>
+/// Manages the player's inventory, UI, and interactions with the inventory system.
+/// </summary>
 public class MenuManager : MonoBehaviour
 {
+    /// <summary>
+    /// Singleton instance of the MenuManager.
+    /// </summary>
     public static MenuManager Instance;
+
     [Header("Inventory Settings")]
     [SerializeField] private InventoryItem[] slots;
     [SerializeField] private GameObject inventoryCanvasGO;
@@ -30,11 +36,19 @@ public class MenuManager : MonoBehaviour
     [Header("Items To Reset")]
     [SerializeField] InventoryItem[] inventoryItemsToReset;
 
-    public event Action inventoryUpdated;
-    // Start is called before the first frame update
-    private void Awake() 
+    /// <summary>
+    /// Events to manage the tutorial.
+    /// </summary>
+    public event Action OnFirstOpen;
+
+    private bool isFirstOpen = false;
+
+    /// <summary>
+    /// Initializes the MenuManager singleton instance and sets initial values.
+    /// </summary>
+    private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
         }
@@ -46,12 +60,20 @@ public class MenuManager : MonoBehaviour
         slots = new InventoryItem[24];
         playerStateMachine = GetComponent<PlayerStateMachine>();
     }
+
+    /// <summary>
+    /// Gets the size of the inventory.
+    /// </summary>
     public int GetSize()
     {
         return slots.Length;
     }
+
+    /// <summary>
+    /// Initializes references to inventory item game objects.
+    /// </summary>
     void Start()
-    {   
+    {
         int childCount = contentInventory.transform.childCount;
 
         for (int i = 0; i < childCount; i++)
@@ -64,25 +86,42 @@ public class MenuManager : MonoBehaviour
             }
         }
     }
-    private void Update() 
+
+    /// <summary>
+    /// Updates the inventory state based on user input.
+    /// </summary>
+    private void Update()
     {
-        if(InputManager.Instance.InventoryOpenCloseInput)
+        if (!TutorialManager.Instance.canOpenInventory)
         {
-            if(!isPaused)
+            return;
+        }
+        if (InputManager.Instance.InventoryOpenCloseInput)
+        {
+            if (!isPaused)
             {
+                if (!isFirstOpen)
+                {
+                    OnFirstOpen?.Invoke();
+                    isFirstOpen = true;
+                }
                 Pause();
             }
             else
             {
                 Unpause();
             }
-        }    
+        }
     }
     public static MenuManager GetPlayerInventory()
     {
         var player = GameObject.FindWithTag("Player");
         return player.GetComponent<MenuManager>();
     }
+
+    /// <summary>
+    /// Pauses the game and open the inventory.
+    /// </summary>
     private void Pause()
     {
         Cursor.lockState = CursorLockMode.None;
@@ -140,6 +179,10 @@ public class MenuManager : MonoBehaviour
         }
         return -1;
     }
+
+    /// <summary>
+    /// Methods to manage the InventoryItem list to obtain information.
+    /// </summary>
     public InventoryItem GetItemInSlot(int slot)
     {
         return slots[slot];
@@ -163,6 +206,10 @@ public class MenuManager : MonoBehaviour
         }
         return false;
     }
+
+    /// <summary>
+    /// Add an InventoryItem to the inventory and checks if it is stackeable or not.
+    /// </summary>
     public bool AddToFirstEmptySlot(InventoryItem item)
     {
         if(HasItem(item))

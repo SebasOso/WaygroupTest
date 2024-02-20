@@ -1,37 +1,45 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Waygroup;
 
+/// <summary>
+/// Manages throwing objects in the game.
+/// </summary>
 public class ThrowManager : MonoBehaviour
 {
     public static ThrowManager Instance { get; private set; }
-    [HideInInspector] public bool isBeingCarried =  false;
-    private Throwable currentThrowable = null;
+
+    [HideInInspector] public bool isBeingCarried = false; 
+    private Throwable currentThrowable = null; 
 
     [Header("Settings")]
-    [SerializeField] private float baseForce = 100f;
-    [SerializeField] private GameObject uIToThrow;
+    [SerializeField] private float baseForce = 100f; 
+    [SerializeField] private GameObject uIToThrow; 
 
-    //Tutorial
-    private bool firstTime;
-    private bool finishRecord;
+    // Tutorial Flags
+    private bool firstTime; 
+    private bool finishRecord; 
     public event Action OnFirstThrow;
+
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
         }
     }
+
     private void Start()
     {
         TutorialManager.Instance.OnRecord03 += FinishRecord;
     }
+
+    /// <summary>
+    /// Grabs the specified object for throwing.
+    /// </summary>
     public void Grab(Throwable objectToGrab)
     {
-        if(currentThrowable == null && isBeingCarried == false)
+        if (currentThrowable == null && !isBeingCarried)
         {
             objectToGrab.GetComponent<Rigidbody>().isKinematic = true;
             objectToGrab.transform.parent = Camera.main.transform;
@@ -41,15 +49,19 @@ public class ThrowManager : MonoBehaviour
             InteractionManager.Instance.canInteract = false;
         }
     }
+
+    /// <summary>
+    /// Throws the currently carried object.
+    /// </summary>
     public void Throw(float holdingTime)
     {
-        if(finishRecord == false) { return; }
-        if(firstTime == false)
+        if (!finishRecord) { return; }
+        if (!firstTime)
         {
-            OnFirstThrow.Invoke();  
+            OnFirstThrow?.Invoke();
             firstTime = true;
         }
-        if(currentThrowable != null && isBeingCarried)
+        if (currentThrowable != null && isBeingCarried)
         {
             currentThrowable.GetComponent<Rigidbody>().isKinematic = false;
             currentThrowable.OnLoseFocus();
@@ -60,7 +72,6 @@ public class ThrowManager : MonoBehaviour
             float force = Mathf.Clamp(holdingTime, 0f, 1f);
             float totalForce = force * baseForce;
 
-
             currentThrowable.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * totalForce, ForceMode.Impulse);
             currentThrowable.SetDanger();
 
@@ -69,6 +80,10 @@ public class ThrowManager : MonoBehaviour
             uIToThrow.SetActive(false);
         }
     }
+
+    /// <summary>
+    /// Marks the recording as finished.
+    /// </summary>
     public void FinishRecord()
     {
         finishRecord = true;

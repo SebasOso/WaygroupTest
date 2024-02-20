@@ -1,10 +1,11 @@
 using UnityEngine;
 using Waygroup;
 
+/// <summary>
+/// Controls the player's movement and camera.
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float AnimationBlendSpeed = 8.9f;
-
     [Header("Camera Settings")]
     [SerializeField] private Transform CameraRoot;
     [SerializeField] private Transform Camera;
@@ -12,14 +13,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float BottomLimit = 70f;
     [SerializeField] private float MouseSensitivity = 21.9f;
 
-    [Header("Logic Settings")]
+    [Header("Ground Settings")]
     [SerializeField] private LayerMask groundLayer;
-    public bool CanMove { get;  set; } = true;
+
+    // Flag to determine if can move or not
+    public bool CanMove { get; set; } = true;
 
     [Header("Position Debug")]
     public Vector3 position;
 
-    //MOVEMENT VARIABLES
+    // Rerences to manage logic
     private CharacterController _characterController;
     private InputManager _inputManager;
     private Animator _animator;
@@ -27,13 +30,13 @@ public class PlayerController : MonoBehaviour
     private int _xVelHash;
     private int _yVelHash;
 
-    //CAMERA VARIABLES
+    // Camera Variables
     private float _xRotation;
 
-    //MOVEMENT VELOCITY
+    // Movement Velocity
     private const float _walkSpeed = 2f;
     private const float _runSpeed = 4f;
-    private Vector3 _currentVelocity;
+
     private void Start()
     {
         _hasAnimator = TryGetComponent<Animator>(out _animator);
@@ -47,7 +50,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         position = transform.position;
-        if(GetComponent<ForceReceiver>().isGrounded)
+        if (GetComponent<ForceReceiver>().isGrounded)
         {
             Move();
         }
@@ -64,9 +67,12 @@ public class PlayerController : MonoBehaviour
         CameraMovement();
     }
 
+    /// <summary>
+    /// Moves the player character based on input.
+    /// </summary>
     private void Move()
     {
-        if(MenuManager.Instance.isPaused)
+        if (MenuManager.Instance.isPaused)
         {
             return;
         }
@@ -97,6 +103,10 @@ public class PlayerController : MonoBehaviour
             _animator.SetFloat(_yVelHash, _inputManager.Move.y, 0.1f, Time.fixedDeltaTime);
         }
     }
+
+    /// <summary>
+    /// Stops the player's movement.
+    /// </summary>
     public void Stop()
     {
         Vector3 moveDirection = transform.TransformDirection(new Vector3(_inputManager.Move.x, 0, _inputManager.Move.y));
@@ -111,6 +121,10 @@ public class PlayerController : MonoBehaviour
 
         _animator.SetBool("IsRunning", false);
     }
+
+    /// <summary>
+    /// Handles camera movement based on input.
+    /// </summary>
     private void CameraMovement()
     {
         if (!_hasAnimator) { return; }
@@ -125,11 +139,15 @@ public class PlayerController : MonoBehaviour
         Camera.localRotation = Quaternion.Euler(_xRotation, 0, 0);
         transform.Rotate(Vector3.up, Mouse_X * MouseSensitivity * Time.deltaTime);
     }
+
+    /// <summary>
+    /// Handles falling when the player is not grounded.
+    /// </summary>
     private void Falling()
     {
         _inputManager.CanRun = false;
         Vector3 momentum = _characterController.velocity;
         momentum.y = 0f;
-        _characterController.Move(momentum + GetComponent<ForceReceiver>().Movement * Time.deltaTime);  
+        _characterController.Move(momentum + GetComponent<ForceReceiver>().Movement * Time.deltaTime);
     }
 }
