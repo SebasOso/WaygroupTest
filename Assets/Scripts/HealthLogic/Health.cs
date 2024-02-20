@@ -100,10 +100,13 @@ public class Health : MonoBehaviour
     /// <param name="regenerationRate">The rate of health regeneration.</param>
     public void HealthPotion(float regenerationRate)
     {
-        if(TutorialManager.Instance.isFirstHeal == false)
+        if(TutorialManager.Instance != null)
         {
-            TutorialManager.Instance.isFirstHeal = true;
-            OnHeal?.Invoke();
+            if (TutorialManager.Instance.isFirstHeal == false)
+            {
+                TutorialManager.Instance.isFirstHeal = true;
+                OnHeal?.Invoke();
+            }
         }
         StartCoroutine(Regeneration(regenerationRate));
     }

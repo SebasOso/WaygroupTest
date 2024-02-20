@@ -92,9 +92,12 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if (!TutorialManager.Instance.canOpenInventory)
+        if (TutorialManager.Instance != null)
         {
-            return;
+            if (!TutorialManager.Instance.canOpenInventory)
+            {
+                return;
+            }
         }
         if (InputManager.Instance.InventoryOpenCloseInput)
         {

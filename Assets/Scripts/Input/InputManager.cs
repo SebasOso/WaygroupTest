@@ -34,6 +34,7 @@ namespace Waygroup
         public InputAction _interactAction;
         public InputAction _throwAction;
         public InputAction _throwReleaseAction;
+        public InputAction _dropAction;
         private void Awake()
         {
             if(Instance == null)
@@ -51,6 +52,7 @@ namespace Waygroup
             _inventoryAction = _currentMap.FindAction("InventoryOpenClose");
             _throwAction = _currentMap.FindAction("Throw");
             _throwReleaseAction = _currentMap.FindAction("ThrowRelease");
+            _dropAction = _currentMap.FindAction("Drop");
 
             // Subscribe to input action events
             _moveAction.performed += OnMove;
@@ -59,6 +61,7 @@ namespace Waygroup
             _interactAction.performed += OnInteract;
             _throwAction.performed += OnThrow;
             _throwReleaseAction.performed += OnThrowRelease;
+            _dropAction.performed += OnDrop;
 
             _moveAction.canceled += OnMove;
             _lookAction.canceled += OnLook;
@@ -141,6 +144,12 @@ namespace Waygroup
         private void OnThrowRelease(InputAction.CallbackContext context)
         {
             ThrowManager.Instance.Throw(throwTime);
+        }
+
+        // Handles drop input.
+        private void OnDrop(InputAction.CallbackContext context)
+        {
+            ThrowManager.Instance.Drop();
         }
 
         // Enables the input action map.

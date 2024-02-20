@@ -14,7 +14,8 @@ public class ThrowManager : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private float baseForce = 100f; 
-    [SerializeField] private GameObject uIToThrow; 
+    [SerializeField] private GameObject uIToThrow;
+    [SerializeField] private Transform grabSocket;
 
     // Tutorial Flags
     private bool firstTime; 
@@ -31,7 +32,14 @@ public class ThrowManager : MonoBehaviour
 
     private void Start()
     {
-        TutorialManager.Instance.OnRecord03 += FinishRecord;
+        if(TutorialManager.Instance != null)
+        {
+            TutorialManager.Instance.OnRecord03 += FinishRecord;
+        }
+        else
+        {
+            FinishRecord();
+        }
     }
 
     /// <summary>
@@ -41,8 +49,12 @@ public class ThrowManager : MonoBehaviour
     {
         if (currentThrowable == null && !isBeingCarried)
         {
-            objectToGrab.GetComponent<Rigidbody>().isKinematic = true;
-            objectToGrab.transform.parent = Camera.main.transform;
+            Rigidbody rb = objectToGrab.GetComponent<Rigidbody>();
+            Collider collider = objectToGrab.GetComponent<Collider>();
+            rb.isKinematic = true;
+            collider.isTrigger = true;
+            objectToGrab.transform.parent = grabSocket;
+            objectToGrab.transform.localPosition = Vector3.zero;
             isBeingCarried = true;
             currentThrowable = objectToGrab;
             uIToThrow.SetActive(true);
@@ -63,7 +75,11 @@ public class ThrowManager : MonoBehaviour
         }
         if (currentThrowable != null && isBeingCarried)
         {
-            currentThrowable.GetComponent<Rigidbody>().isKinematic = false;
+            Rigidbody rb = currentThrowable.GetComponent<Rigidbody>();
+            Collider collider = currentThrowable.GetComponent<Collider>();
+            collider.isTrigger = false;
+            rb.isKinematic = false;
+            rb.useGravity = true;
             currentThrowable.OnLoseFocus();
             currentThrowable.transform.parent = null;
             InteractionManager.Instance.canInteract = true;
@@ -72,9 +88,32 @@ public class ThrowManager : MonoBehaviour
             float force = Mathf.Clamp(holdingTime, 0f, 1f);
             float totalForce = force * baseForce;
 
-            currentThrowable.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * totalForce, ForceMode.Impulse);
+            rb.AddForce(Camera.main.transform.forward * totalForce, ForceMode.Impulse);
             currentThrowable.SetDanger();
 
+            isBeingCarried = false;
+            currentThrowable = null;
+            uIToThrow.SetActive(false);
+        }
+    }
+
+    /// <summary>
+    /// Drops the currently carried object.
+    /// </summary>
+    public void Drop()
+    {
+        if (!finishRecord) { return; }
+        if (!firstTime) { return; }
+        if (currentThrowable != null && isBeingCarried)
+        {
+            Rigidbody rb = currentThrowable.GetComponent<Rigidbody>();
+            Collider collider = currentThrowable.GetComponent<Collider>();
+            collider.isTrigger = false;
+            rb.isKinematic = false;
+            currentThrowable.OnLoseFocus();
+            currentThrowable.transform.parent = null;
+            InteractionManager.Instance.canInteract = true;
+            InputManager.Instance.IsInteracting = false;
             isBeingCarried = false;
             currentThrowable = null;
             uIToThrow.SetActive(false);

@@ -45,7 +45,10 @@ public class HealthPotionPickUp : Interactable
     public override void OnInteract()
     {
         Pickup(); 
-        TutorialManager.Instance.CheckPickUps(); 
+        if(TutorialManager.Instance != null)
+        {
+            TutorialManager.Instance.CheckPickUps();
+        }
     }
 
     /// <summary>

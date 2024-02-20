@@ -96,4 +96,10 @@ public class Throwable : Interactable
         float currentSpeed = currentVelocity.magnitude;
         return currentSpeed;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Triggered");
+        ThrowManager.Instance.Drop();
+    }
 }

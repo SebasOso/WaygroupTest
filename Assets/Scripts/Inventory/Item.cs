@@ -39,14 +39,19 @@ public class Item : MonoBehaviour
     /// </summary>
     public void UseObject()
     {
-        if (!TutorialManager.Instance.canEquip) { return; }
-
+        if(TutorialManager.Instance != null)
+        {
+            if (!TutorialManager.Instance.canEquip) { return; }
+        }
         if (shoulder != null)
         {
-            if (!TutorialManager.Instance.isFirstTimeEquipped)
+            if (TutorialManager.Instance != null)
             {
-                TutorialManager.Instance.isFirstTimeEquipped = true;
-                OnFirstEquipped?.Invoke();
+                if (!TutorialManager.Instance.isFirstTimeEquipped)
+                {
+                    TutorialManager.Instance.isFirstTimeEquipped = true;
+                    OnFirstEquipped?.Invoke();
+                }
             }
             shoulder.EquipShoulderFromInventory(this.item, this);
         }
@@ -69,13 +74,19 @@ public class Item : MonoBehaviour
     /// </summary>
     public void DropObject()
     {
-        if(!TutorialManager.Instance.canDrop) { return; }
-        if(shoulder != null)
+        if (TutorialManager.Instance != null)
         {
-            if (!TutorialManager.Instance.isFirstTimeDropped)
+            if (!TutorialManager.Instance.canDrop) { return; }
+        }
+        if (shoulder != null)
+        {
+            if(TutorialManager.Instance != null)
             {
-                TutorialManager.Instance.isFirstTimeDropped = true;
-                OnFirstDropped?.Invoke();
+                if (!TutorialManager.Instance.isFirstTimeDropped)
+                {
+                    TutorialManager.Instance.isFirstTimeDropped = true;
+                    OnFirstDropped?.Invoke();
+                }
             }
             Vector3 dropPosition = player.GetComponent<PlayerController>().position;
             GameObject gameObject = Instantiate(item.GetObjectToDrop(), dropPosition, Quaternion.identity);
@@ -105,8 +116,11 @@ public class Item : MonoBehaviour
             return;
         }
         InventoryManager.Instance.SetItemToUse(this);
-        OnFirstEquipped += TutorialManager.Instance.PlayInventory03;
-        OnFirstDropped += TutorialManager.Instance.PlayInventory04;
+        if(TutorialManager.Instance != null)
+        {
+            OnFirstEquipped += TutorialManager.Instance.PlayInventory03;
+            OnFirstDropped += TutorialManager.Instance.PlayInventory04;
+        }
     }
     /// <summary>
     /// Set the item in the UI socket with the InventoryItem information.
