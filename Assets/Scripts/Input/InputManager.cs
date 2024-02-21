@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
@@ -168,6 +169,36 @@ namespace Waygroup
         private void OnDisable()
         {
             _currentMap.Disable();
+
+            // Unsuscribe to input action events
+            _moveAction.performed -= OnMove;
+            _lookAction.performed -= OnLook;
+            _runAction.performed -= OnRun;
+            _interactAction.performed -= OnInteract;
+            _throwAction.performed -= OnThrow;
+            _throwReleaseAction.performed -= OnThrowRelease;
+            _dropAction.performed -= OnDrop;
+
+            _moveAction.canceled -= OnMove;
+            _lookAction.canceled -= OnLook;
+            _runAction.canceled -= OnWalk;
+            _interactAction.canceled -= OnNoInteract;
+        }
+        public void Unsuscribe()
+        {
+            // Unsuscribe to input action events
+            _moveAction.performed -= OnMove;
+            _lookAction.performed -= OnLook;
+            _runAction.performed -= OnRun;
+            _interactAction.performed -= OnInteract;
+            _throwAction.performed -= OnThrow;
+            _throwReleaseAction.performed -= OnThrowRelease;
+            _dropAction.performed -= OnDrop;
+
+            _moveAction.canceled -= OnMove;
+            _lookAction.canceled -= OnLook;
+            _runAction.canceled -= OnWalk;
+            _interactAction.canceled -= OnNoInteract;
         }
     }
 }

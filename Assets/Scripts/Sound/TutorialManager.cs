@@ -19,7 +19,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private List<GameObject> objectsToGrab;
     [SerializeField] private GameObject objectsToGrabEnemies;
     [SerializeField] private GameObject pickTutorial;
-    [SerializeField] private GameObject spikesToActivate;
+    [SerializeField] private GameObject portalToActivate;
 
     // Grab Audio Settings
     [Header("Grab Audio Settings")]
@@ -259,7 +259,7 @@ public class TutorialManager : MonoBehaviour
     {
         SetAudioAndPlay(healRecord);
         yield return new WaitForSeconds(healRecord.length);
-        spikesToActivate.SetActive(true);
+        portalToActivate.SetActive(true);
     }
     /// <summary>
     /// Method to manage the first event.
