@@ -8385,8 +8385,8 @@ MonoBehaviour:
   - {fileID: 1884764108}
   - {fileID: 396315791}
   objectsToGrabEnemies: {fileID: 660387306}
-  pickTutorial: {fileID: 1374896808}
-  portalToActive: {fileID: 0}
+  pickTutorial: {fileID: 1436474570}
+  spikesToActivate: {fileID: 1374896808}
   audioSource: {fileID: 1637029030}
   record01: {fileID: 8300000, guid: 773bf21fbfed67b429fe43f3a45f265e, type: 3}
   record02: {fileID: 8300000, guid: 74fad584d81f73d4c8dda85d7c0053b6, type: 3}
