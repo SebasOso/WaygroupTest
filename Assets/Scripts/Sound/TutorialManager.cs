@@ -19,6 +19,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private List<GameObject> objectsToGrab;
     [SerializeField] private GameObject objectsToGrabEnemies;
     [SerializeField] private GameObject pickTutorial;
+    [SerializeField] private GameObject spikesToActivate;
 
     // Grab Audio Settings
     [Header("Grab Audio Settings")]
@@ -55,6 +56,7 @@ public class TutorialManager : MonoBehaviour
     [HideInInspector] public bool canOpenInventory = false;
     [HideInInspector] public bool canEquip = false;
     [HideInInspector] public bool canDrop = false;
+    [HideInInspector] public bool canHeal = false;
     [HideInInspector] public bool isFirstTimeEquipped = false;
     [HideInInspector] public bool isFirstTimeDropped = false;
     [HideInInspector] public bool isFirstHeal = false;
@@ -173,7 +175,7 @@ public class TutorialManager : MonoBehaviour
     }
     public void PlayEnemies03()
     {
-        SetAudioAndPlay(enemiesRecord03);
+        StartCoroutine(WaitForEnemy03());
     }
 
     /// <summary>
@@ -181,7 +183,7 @@ public class TutorialManager : MonoBehaviour
     /// </summary>
     public void PlayHeal()
     {
-        SetAudioAndPlay(healRecord);
+        StartCoroutine(WaitForHeal());
     }
 
     /// <summary>
@@ -247,7 +249,18 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         SetAudioAndPlay(enemiesRecord02);
     }
-
+    private IEnumerator WaitForEnemy03()
+    {
+        SetAudioAndPlay(enemiesRecord03);
+        yield return new WaitForSeconds(enemiesRecord03.length);
+        canHeal = true;
+    }
+    private IEnumerator WaitForHeal()
+    {
+        SetAudioAndPlay(healRecord);
+        yield return new WaitForSeconds(healRecord.length);
+        spikesToActivate.SetActive(true);
+    }
     /// <summary>
     /// Method to manage the first event.
     /// </summary>

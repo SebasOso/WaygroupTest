@@ -37,7 +37,7 @@ public class EnemyAxeDamage : MonoBehaviour
         if(other.TryGetComponent<ForceReceiver>(out ForceReceiver force))
         {
             Vector3 direction = (other.transform.position - myCollider.transform.position).normalized;
-            force.AddForce(direction * enemyArmory.currentWeapon.value.GetWeaponKnokcback());
+            force.AddForce(direction * enemyArmory.currentWeapon.GetWeaponKnokcback());
         }
     }
     private void PlayRandomSound(AudioSource audioSource)

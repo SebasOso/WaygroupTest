@@ -27,7 +27,7 @@ public class Throwable : Interactable
     {
         if (isDanger)
         {
-            if (collision.collider.CompareTag("Enemy") && (GetSpeedInAir() >= 4 || GetComponent<Rigidbody>().mass >= 4))
+            if (collision.collider.CompareTag("Enemy") && (GetSpeedInAir() >= 3 || GetComponent<Rigidbody>().mass >= 4))
             {
                 Vector3 hitPoint = collision.contacts[0].point;
 

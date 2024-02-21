@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using RPG.Combat;
-using RPG.Utils;
 using UnityEngine;
 
 public class EnemyArmory : MonoBehaviour
@@ -18,13 +16,13 @@ public class EnemyArmory : MonoBehaviour
 
     [Header("Animation")]
     [SerializeField] private Animator animator;
-    public LazyValue<Weapon> currentWeapon;
+    public Weapon currentWeapon;
     public float damage;
     Health Player; 
     private void Awake() 
     {
         Player = GameObject.FindWithTag("Player").GetComponent<Health>();
-        currentWeapon = new LazyValue<Weapon>(GetInitialWeapon);
+        currentWeapon = GetInitialWeapon();
     }
     private Weapon GetInitialWeapon()
     {
@@ -33,13 +31,12 @@ public class EnemyArmory : MonoBehaviour
     }
     private void Start() 
     {
-        currentWeapon.ForceInit();
-        animator.SetFloat("attackSpeed", 1);
+        animator.SetFloat("attackSpeed", 1.5f);
         damage = 20f;
     }
     public void EquipWeapon(Weapon weapon)
     {
-        currentWeapon.value = weapon;
+        currentWeapon = weapon;
         AttachWeapon(weapon);
     }
 
@@ -50,9 +47,9 @@ public class EnemyArmory : MonoBehaviour
     void Shoot()
     {
         if (Player == null || Player.IsDead()) return;
-        if(currentWeapon.value.HasProjectile())
+        if(currentWeapon.HasProjectile())
         {
-            currentWeapon.value.LaunchProjectile(rightHandSocket,leftHandSocket,Player, damage);
+            currentWeapon.LaunchProjectile(rightHandSocket,leftHandSocket,Player, damage);
         }
     }
     public void PlayShoot()

@@ -57,6 +57,13 @@ public class Item : MonoBehaviour
         }
         else if (healthPotion != null)
         {
+            if (TutorialManager.Instance != null)
+            {
+                if (!TutorialManager.Instance.canHeal)
+                {
+                    return;
+                }
+            }
             if (player.isFullHealth) { return; }
             healthPotion.Heal();
             this.item.RestQuantity();

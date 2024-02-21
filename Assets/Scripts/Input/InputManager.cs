@@ -37,9 +37,14 @@ namespace Waygroup
         public InputAction _dropAction;
         private void Awake()
         {
-            if(Instance == null)
+            if (Instance == null)
             {
                 Instance = this;
+            }
+            else
+            {
+                Destroy(gameObject); // Ensure only one instance of InputManager exists
+                return;
             }
             HideCursor();
 
@@ -144,6 +149,7 @@ namespace Waygroup
         private void OnThrowRelease(InputAction.CallbackContext context)
         {
             ThrowManager.Instance.Throw(throwTime);
+            Debug.Log("Input throw" + throwTime);
         }
 
         // Handles drop input.

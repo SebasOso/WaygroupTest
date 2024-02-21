@@ -31,7 +31,7 @@ public abstract class EnemyBaseState : State
     protected bool IsInAttackRange()
     {
         float distanceAttackMagnitude = (enemyStateMachine.Player.transform.position - enemyStateMachine.transform.position).sqrMagnitude;
-        return distanceAttackMagnitude <= enemyStateMachine.EnemyArmory.currentWeapon.value.GetWeaponRange() * enemyStateMachine.EnemyArmory.currentWeapon.value.GetWeaponRange();
+        return distanceAttackMagnitude <= enemyStateMachine.EnemyArmory.currentWeapon.GetWeaponRange() * enemyStateMachine.EnemyArmory.currentWeapon.GetWeaponRange();
     }
     protected void FacePlayer()
     {

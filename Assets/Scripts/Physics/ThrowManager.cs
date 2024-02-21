@@ -67,9 +67,11 @@ public class ThrowManager : MonoBehaviour
     /// </summary>
     public void Throw(float holdingTime)
     {
-        if (!finishRecord) { return; }
+        if (!finishRecord) {
+            Debug.Log("NO FINISH RECORD"); return; }
         if (!firstTime)
         {
+            Debug.Log("FIRST TIME FALSE");
             OnFirstThrow?.Invoke();
             firstTime = true;
         }
@@ -84,9 +86,14 @@ public class ThrowManager : MonoBehaviour
             currentThrowable.transform.parent = null;
             InteractionManager.Instance.canInteract = true;
             InputManager.Instance.IsInteracting = false;
+            Debug.Log("THROW" + holdingTime);
+
 
             float force = Mathf.Clamp(holdingTime, 0f, 1f);
             float totalForce = force * baseForce;
+
+            Debug.Log("force: " + force);
+            Debug.Log("total force: " + totalForce);
 
             rb.AddForce(Camera.main.transform.forward * totalForce, ForceMode.Impulse);
             currentThrowable.SetDanger();

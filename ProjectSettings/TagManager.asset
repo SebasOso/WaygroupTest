@@ -7,6 +7,7 @@ TagManager:
   - Ragdoll
   - PickUI
   - Enemy
+  - PlayerPro
   layers:
   - Default
   - TransparentFX
